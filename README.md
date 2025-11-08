@@ -34,9 +34,13 @@ Complete Express.js framework with authentication, RBAC, MongoDB integration, an
 
 **Features**: JWT auth, email tokens, ECIES integration, i18n middleware, 604 tests, service container
 
+**Testing**: Test utilities available via separate entry point: `import { ... } from '@digitaldefiance/node-express-suite/testing'`
+
 ### [@digitaldefiance/express-suite-test-utils](packages/digitaldefiance-express-suite-test-utils)
 
 Handy test utilities (toThrowType, withConsoleMocks) and more in the near future
+
+**Note**: For node-express-suite test helpers, use `@digitaldefiance/node-express-suite/testing` entry point
 
 ### [@digitaldefiance/express-suite-react-components](packages/digitaldefiance-express-suite-react-components)
 
