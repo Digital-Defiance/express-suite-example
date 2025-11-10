@@ -40,6 +40,14 @@ Complete Express.js framework with authentication, RBAC, MongoDB integration, an
 
 **Testing**: Test utilities available via `/testing` entry point (requires `@faker-js/faker` dev dependency)
 
+### [@digitaldefiance/express-suite-starter](packages/digitaldefiance-express-suite-starter)
+
+Automated generator for MERN stack monorepos with Nx, React 19, Express 5, and MongoDB.
+
+**Features**: Interactive CLI, DevContainer options, Mustache templates, plugin system, rollback support, 137 tests
+
+**Quick Start**: `npx @digitaldefiance/express-suite-starter`
+
 ### [@digitaldefiance/express-suite-test-utils](packages/digitaldefiance-express-suite-test-utils)
 
 Handy test utilities (toThrowType, withConsoleMocks) and more in the near future
@@ -54,6 +62,10 @@ All `/testing` exports require `@faker-js/faker` as a dev dependency.
 ### [@digitaldefiance/express-suite-react-components](packages/digitaldefiance-express-suite-react-components)
 
 React components for authentication flows, internationalization, and user management
+
+### [@digitaldefiance/express-suite-example](packages/digitaldefiance-express-suite-example)
+
+Complete example implementation demonstrating all Express Suite packages in a working MERN application
 
 ## Development/Contribution Quick Start
 
@@ -97,11 +109,15 @@ yarn test
 
 ```
 express-suite/
-├── digitaldefiance-i18n-lib/          # Internationalization
-├── digitaldefiance-ecies-lib/         # Browser crypto
-├── digitaldefiance-node-ecies-lib/    # Node.js crypto
-├── digitaldefiance-suite-core-lib/    # User management primitives
-└── digitaldefiance-node-express-suite/ # Express.js framework
+├── digitaldefiance-i18n-lib/                      # Internationalization
+├── digitaldefiance-ecies-lib/                     # Browser crypto
+├── digitaldefiance-node-ecies-lib/                # Node.js crypto
+├── digitaldefiance-suite-core-lib/                # User management primitives
+├── digitaldefiance-node-express-suite/            # Express.js framework
+├── digitaldefiance-express-suite-starter/         # Monorepo generator
+├── digitaldefiance-express-suite-test-utils/      # Test utilities
+├── digitaldefiance-express-suite-react-components/ # React components
+└── digitaldefiance-express-suite-example/         # Example implementation
 ```
 
 ## Key Features

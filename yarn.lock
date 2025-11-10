@@ -1438,7 +1438,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@digitaldefiance/ecies-lib@npm:2.1.40, @digitaldefiance/ecies-lib@workspace:packages/digitaldefiance-ecies-lib":
+"@digitaldefiance/ecies-lib@npm:2.1.42, @digitaldefiance/ecies-lib@workspace:packages/digitaldefiance-ecies-lib":
   version: 0.0.0-use.local
   resolution: "@digitaldefiance/ecies-lib@workspace:packages/digitaldefiance-ecies-lib"
   dependencies:
@@ -1459,13 +1459,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@digitaldefiance/express-suite-react-components@workspace:packages/digitaldefiance-express-suite-react-components":
+"@digitaldefiance/express-suite-react-components@npm:^2.1.47, @digitaldefiance/express-suite-react-components@workspace:packages/digitaldefiance-express-suite-react-components":
   version: 0.0.0-use.local
   resolution: "@digitaldefiance/express-suite-react-components@workspace:packages/digitaldefiance-express-suite-react-components"
   dependencies:
     "@digitaldefiance/express-suite-test-utils": "npm:1.0.7"
     "@digitaldefiance/i18n-lib": "npm:2.1.40"
-    "@digitaldefiance/suite-core-lib": "npm:2.1.40"
+    "@digitaldefiance/suite-core-lib": "npm:2.1.50"
     "@emotion/react": "npm:^11.14.0"
     "@emotion/styled": "npm:^11.14.0"
     "@mui/icons-material": "npm:^7.0.2"
@@ -1499,6 +1499,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@digitaldefiance/express-suite-starter@workspace:packages/digitaldefiance-express-suite-starter"
   dependencies:
+    "@digitaldefiance/express-suite-react-components": "npm:^2.1.47"
     "@digitaldefiance/express-suite-test-utils": "npm:1.0.7"
     "@digitaldefiance/i18n-lib": "npm:2.1.40"
     "@inquirer/prompts": "npm:^7.5.0"
@@ -1544,11 +1545,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@digitaldefiance/node-ecies-lib@npm:2.1.40, @digitaldefiance/node-ecies-lib@workspace:packages/digitaldefiance-node-ecies-lib":
+"@digitaldefiance/node-ecies-lib@npm:2.1.42, @digitaldefiance/node-ecies-lib@workspace:packages/digitaldefiance-node-ecies-lib":
   version: 0.0.0-use.local
   resolution: "@digitaldefiance/node-ecies-lib@workspace:packages/digitaldefiance-node-ecies-lib"
   dependencies:
-    "@digitaldefiance/ecies-lib": "npm:2.1.40"
+    "@digitaldefiance/ecies-lib": "npm:2.1.42"
     "@digitaldefiance/express-suite-test-utils": "npm:1.0.7"
     "@digitaldefiance/i18n-lib": "npm:2.1.40"
     "@ethereumjs/wallet": "npm:^10.0.0"
@@ -1565,11 +1566,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@digitaldefiance/node-express-suite@workspace:packages/digitaldefiance-node-express-suite"
   dependencies:
-    "@digitaldefiance/ecies-lib": "npm:2.1.40"
+    "@digitaldefiance/ecies-lib": "npm:2.1.42"
     "@digitaldefiance/express-suite-test-utils": "npm:1.0.7"
     "@digitaldefiance/i18n-lib": "npm:2.1.40"
-    "@digitaldefiance/node-ecies-lib": "npm:2.1.40"
-    "@digitaldefiance/suite-core-lib": "npm:2.1.40"
+    "@digitaldefiance/node-ecies-lib": "npm:2.1.42"
+    "@digitaldefiance/suite-core-lib": "npm:2.1.47"
     "@subspace/reed-solomon-erasure.wasm": "npm:^0.2.5"
     argon2: "npm:^0.40.1"
     cors: "npm:^2.8.5"
@@ -1588,11 +1589,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@digitaldefiance/suite-core-lib@npm:2.1.40, @digitaldefiance/suite-core-lib@workspace:packages/digitaldefiance-suite-core-lib":
+"@digitaldefiance/suite-core-lib@npm:2.1.47":
+  version: 2.1.47
+  resolution: "@digitaldefiance/suite-core-lib@npm:2.1.47"
+  dependencies:
+    "@digitaldefiance/ecies-lib": "npm:2.1.42"
+    "@digitaldefiance/i18n-lib": "npm:2.1.40"
+  checksum: 10c0/271a97ec83e309149356289cc08c171ce143f8b264485bb1f0142c5daae6fbd59a0fca90c9d9e7d10cc6deaae45fc06935ac2c96290c9c8c7f3d984e90f7e640
+  languageName: node
+  linkType: hard
+
+"@digitaldefiance/suite-core-lib@npm:2.1.50, @digitaldefiance/suite-core-lib@workspace:packages/digitaldefiance-suite-core-lib":
   version: 0.0.0-use.local
   resolution: "@digitaldefiance/suite-core-lib@workspace:packages/digitaldefiance-suite-core-lib"
   dependencies:
-    "@digitaldefiance/ecies-lib": "npm:2.1.40"
+    "@digitaldefiance/ecies-lib": "npm:2.1.42"
     "@digitaldefiance/i18n-lib": "npm:2.1.40"
   languageName: unknown
   linkType: soft
