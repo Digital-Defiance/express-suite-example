@@ -61,11 +61,21 @@ All `/testing` exports require `@faker-js/faker` as a dev dependency.
 
 ### [@digitaldefiance/express-suite-react-components](packages/digitaldefiance-express-suite-react-components)
 
-React components for authentication flows, internationalization, and user management
+Production-ready React components for authentication, user management, and internationalization.
+
+**Features**: Auth forms (login, register, backup codes), route guards (PrivateRoute, UnAuthRoute), hooks (useAuth, useI18n), providers (AuthProvider, I18nProvider), UI components (TopMenu, DashboardPage, ApiAccess)
+
+**Components**: LoginForm, RegisterForm, BackupCodeLoginForm, ChangePasswordForm, LogoutPage, VerifyEmailPage, BackupCodesForm
+
+**Wrappers**: Pre-configured wrapper components connecting forms to hooks for drop-in usage
 
 ### [@digitaldefiance/express-suite-example](packages/digitaldefiance-express-suite-example)
 
-Complete example implementation demonstrating all Express Suite packages in a working MERN application
+Complete reference implementation demonstrating Express Suite integration in a production MERN stack.
+
+**Features**: Full authentication flow, i18n setup, MongoDB integration, React 19 + Express 5, DevContainer configuration
+
+**Use Cases**: Learning resource, starter template, integration testing, best practices reference
 
 ## Development/Contribution Quick Start
 
