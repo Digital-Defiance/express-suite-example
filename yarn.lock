@@ -1598,7 +1598,7 @@ __metadata:
     "@mui/material": "npm:^7.3.5"
     "@mui/system": "npm:^7.3.5"
     "@mui/x-date-pickers": "npm:^8.17.0"
-    "@nx/devkit": "npm:22.0.2"
+    "@nx/devkit": "npm:22.0.3"
     "@nx/esbuild": "npm:22.0.3"
     "@nx/eslint": "npm:22.0.3"
     "@nx/eslint-plugin": "npm:22.0.3"
