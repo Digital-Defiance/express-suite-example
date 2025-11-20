@@ -1438,12 +1438,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@digitaldefiance/ecies-lib@npm:2.1.42, @digitaldefiance/ecies-lib@workspace:packages/digitaldefiance-ecies-lib":
+"@digitaldefiance/ecies-lib@npm:3.0.8, @digitaldefiance/ecies-lib@workspace:packages/digitaldefiance-ecies-lib":
   version: 0.0.0-use.local
   resolution: "@digitaldefiance/ecies-lib@workspace:packages/digitaldefiance-ecies-lib"
   dependencies:
-    "@digitaldefiance/express-suite-test-utils": "npm:1.0.7"
-    "@digitaldefiance/i18n-lib": "npm:2.1.40"
+    "@digitaldefiance/express-suite-test-utils": "npm:1.0.10"
+    "@digitaldefiance/i18n-lib": "npm:3.6.4"
     "@ethereumjs/wallet": "npm:^10.0.0"
     "@noble/curves": "npm:^2.0.1"
     "@noble/hashes": "npm:^2.0.1"
@@ -1453,19 +1453,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@digitaldefiance/express-suite-example@workspace:packages/digitaldefiance-express-suite-example":
-  version: 0.0.0-use.local
-  resolution: "@digitaldefiance/express-suite-example@workspace:packages/digitaldefiance-express-suite-example"
-  languageName: unknown
-  linkType: soft
-
-"@digitaldefiance/express-suite-react-components@npm:^2.1.47, @digitaldefiance/express-suite-react-components@workspace:packages/digitaldefiance-express-suite-react-components":
+"@digitaldefiance/express-suite-react-components@npm:^2.5.12, @digitaldefiance/express-suite-react-components@workspace:packages/digitaldefiance-express-suite-react-components":
   version: 0.0.0-use.local
   resolution: "@digitaldefiance/express-suite-react-components@workspace:packages/digitaldefiance-express-suite-react-components"
   dependencies:
-    "@digitaldefiance/express-suite-test-utils": "npm:1.0.7"
-    "@digitaldefiance/i18n-lib": "npm:2.1.40"
-    "@digitaldefiance/suite-core-lib": "npm:2.1.50"
+    "@digitaldefiance/express-suite-test-utils": "npm:1.0.10"
+    "@digitaldefiance/i18n-lib": "npm:3.6.4"
+    "@digitaldefiance/suite-core-lib": "npm:^2.2.23"
     "@emotion/react": "npm:^11.14.0"
     "@emotion/styled": "npm:^11.14.0"
     "@mui/icons-material": "npm:^7.0.2"
@@ -1474,24 +1468,25 @@ __metadata:
     "@mui/x-date-pickers": "npm:^8.9.0"
     "@testing-library/dom": "npm:^10.4.0"
     "@testing-library/jest-dom": "npm:^6.9.1"
-    "@testing-library/react": "npm:^16.3.0"
+    "@testing-library/react": "npm:^16.0.1"
+    "@testing-library/react-hooks": "npm:^8.0.1"
     "@testing-library/user-event": "npm:^14.6.1"
     "@types/jest": "npm:^30.0.0"
     "@types/react": "npm:19.0.0"
     "@types/react-dom": "npm:19.0.0"
     axios: "npm:^1.9.0"
+    currency-codes: "npm:^2.2.0"
     formik: "npm:^2.4.6"
     jest: "npm:^30.2.0"
     jest-environment-jsdom: "npm:^30.2.0"
-    react: "npm:^19.0.0"
-    react-dom: "npm:^19.0.0"
+    moment-timezone: "npm:^0.6.0"
+    react: "npm:19.0.0"
+    react-dom: "npm:19.0.0"
     react-number-format: "npm:^5.4.4"
-    react-router-dom: "npm:^6.29.0"
     ts-jest: "npm:^29.4.5"
     yup: "npm:^1.6.1"
   peerDependencies:
-    react: ^19.0.0
-    react-dom: ^19.0.0
+    react-router-dom: 6.29.0
   languageName: unknown
   linkType: soft
 
@@ -1499,9 +1494,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@digitaldefiance/express-suite-starter@workspace:packages/digitaldefiance-express-suite-starter"
   dependencies:
-    "@digitaldefiance/express-suite-react-components": "npm:^2.1.47"
-    "@digitaldefiance/express-suite-test-utils": "npm:1.0.7"
-    "@digitaldefiance/i18n-lib": "npm:2.1.40"
+    "@digitaldefiance/express-suite-react-components": "npm:^2.5.12"
+    "@digitaldefiance/express-suite-test-utils": "npm:1.0.10"
+    "@digitaldefiance/i18n-lib": "npm:3.6.4"
     "@inquirer/prompts": "npm:^7.5.0"
     "@nx/js": "npm:22.0.2"
     "@nx/workspace": "npm:22.0.2"
@@ -1525,7 +1520,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@digitaldefiance/express-suite-test-utils@npm:1.0.7, @digitaldefiance/express-suite-test-utils@workspace:packages/digitaldefiance-express-suite-test-utils":
+"@digitaldefiance/express-suite-test-utils@npm:1.0.10, @digitaldefiance/express-suite-test-utils@workspace:packages/digitaldefiance-express-suite-test-utils":
   version: 0.0.0-use.local
   resolution: "@digitaldefiance/express-suite-test-utils@workspace:packages/digitaldefiance-express-suite-test-utils"
   dependencies:
@@ -1533,25 +1528,30 @@ __metadata:
     "@types/jest": "npm:^30.0.0"
     "@types/node": "npm:^22.0.0"
     expect: "npm:^30.0.5"
+    mongodb-memory-server: "npm:^10.1.3"
+    mongoose: "npm:^8.9.3"
+  peerDependencies:
+    mongoose: ^8.0.0
   languageName: unknown
   linkType: soft
 
-"@digitaldefiance/i18n-lib@npm:2.1.40, @digitaldefiance/i18n-lib@workspace:packages/digitaldefiance-i18n-lib":
+"@digitaldefiance/i18n-lib@npm:3.6.4, @digitaldefiance/i18n-lib@workspace:packages/digitaldefiance-i18n-lib":
   version: 0.0.0-use.local
   resolution: "@digitaldefiance/i18n-lib@workspace:packages/digitaldefiance-i18n-lib"
   dependencies:
+    currency-codes: "npm:^2.2.0"
     moment: "npm:^2.30.1"
     moment-timezone: "npm:^0.6.0"
   languageName: unknown
   linkType: soft
 
-"@digitaldefiance/node-ecies-lib@npm:2.1.42, @digitaldefiance/node-ecies-lib@workspace:packages/digitaldefiance-node-ecies-lib":
+"@digitaldefiance/node-ecies-lib@npm:3.0.8, @digitaldefiance/node-ecies-lib@workspace:packages/digitaldefiance-node-ecies-lib":
   version: 0.0.0-use.local
   resolution: "@digitaldefiance/node-ecies-lib@workspace:packages/digitaldefiance-node-ecies-lib"
   dependencies:
-    "@digitaldefiance/ecies-lib": "npm:2.1.42"
-    "@digitaldefiance/express-suite-test-utils": "npm:1.0.7"
-    "@digitaldefiance/i18n-lib": "npm:2.1.40"
+    "@digitaldefiance/ecies-lib": "npm:3.0.8"
+    "@digitaldefiance/express-suite-test-utils": "npm:1.0.10"
+    "@digitaldefiance/i18n-lib": "npm:3.6.4"
     "@ethereumjs/wallet": "npm:^10.0.0"
     "@noble/curves": "npm:^2.0.1"
     "@noble/hashes": "npm:^2.0.1"
@@ -1566,11 +1566,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@digitaldefiance/node-express-suite@workspace:packages/digitaldefiance-node-express-suite"
   dependencies:
-    "@digitaldefiance/ecies-lib": "npm:2.1.42"
-    "@digitaldefiance/express-suite-test-utils": "npm:1.0.7"
-    "@digitaldefiance/i18n-lib": "npm:2.1.40"
-    "@digitaldefiance/node-ecies-lib": "npm:2.1.42"
-    "@digitaldefiance/suite-core-lib": "npm:2.1.47"
+    "@digitaldefiance/ecies-lib": "npm:3.0.8"
+    "@digitaldefiance/express-suite-test-utils": "npm:1.0.10"
+    "@digitaldefiance/i18n-lib": "npm:3.6.4"
+    "@digitaldefiance/node-ecies-lib": "npm:3.0.8"
+    "@digitaldefiance/suite-core-lib": "npm:^2.2.26"
+    "@noble/curves": "npm:^2.0.1"
+    "@noble/hashes": "npm:^2.0.1"
     "@subspace/reed-solomon-erasure.wasm": "npm:^0.2.5"
     argon2: "npm:^0.40.1"
     cors: "npm:^2.8.5"
@@ -1589,22 +1591,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@digitaldefiance/suite-core-lib@npm:2.1.47":
-  version: 2.1.47
-  resolution: "@digitaldefiance/suite-core-lib@npm:2.1.47"
-  dependencies:
-    "@digitaldefiance/ecies-lib": "npm:2.1.42"
-    "@digitaldefiance/i18n-lib": "npm:2.1.40"
-  checksum: 10c0/271a97ec83e309149356289cc08c171ce143f8b264485bb1f0142c5daae6fbd59a0fca90c9d9e7d10cc6deaae45fc06935ac2c96290c9c8c7f3d984e90f7e640
-  languageName: node
-  linkType: hard
-
-"@digitaldefiance/suite-core-lib@npm:2.1.50, @digitaldefiance/suite-core-lib@workspace:packages/digitaldefiance-suite-core-lib":
+"@digitaldefiance/suite-core-lib@npm:^2.2.23, @digitaldefiance/suite-core-lib@npm:^2.2.26, @digitaldefiance/suite-core-lib@workspace:packages/digitaldefiance-suite-core-lib":
   version: 0.0.0-use.local
   resolution: "@digitaldefiance/suite-core-lib@workspace:packages/digitaldefiance-suite-core-lib"
   dependencies:
-    "@digitaldefiance/ecies-lib": "npm:2.1.42"
-    "@digitaldefiance/i18n-lib": "npm:2.1.40"
+    "@digitaldefiance/ecies-lib": "npm:3.0.8"
+    "@digitaldefiance/i18n-lib": "npm:3.6.4"
   languageName: unknown
   linkType: soft
 
@@ -1966,6 +1958,9 @@ __metadata:
     nx: "npm:22.0.2"
     prettier: "npm:^2.6.2"
     prettier-plugin-organize-imports: "npm:^4.1.0"
+    react: "npm:19.0.0"
+    react-dom: "npm:19.0.0"
+    react-router-dom: "npm:6.29.0"
     supertest: "npm:^7.1.4"
     ts-brand: "npm:^0.2.0"
     ts-jest: "npm:^29.0.0"
@@ -3458,10 +3453,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remix-run/router@npm:1.23.0":
-  version: 1.23.0
-  resolution: "@remix-run/router@npm:1.23.0"
-  checksum: 10c0/eaef5cb46a1e413f7d1019a75990808307e08e53a39d4cf69c339432ddc03143d725decef3d6b9b5071b898da07f72a4a57c4e73f787005fcf10162973d8d7d7
+"@remix-run/router@npm:1.22.0":
+  version: 1.22.0
+  resolution: "@remix-run/router@npm:1.22.0"
+  checksum: 10c0/6fbfbdddb485af6bc24635272436fc9884b40d2517581b5cc66ab866279d238ccb11b6f8f67ad99d43ff21c0ea8bc088c96d510a42dcc0cc05a716760fe5a633
   languageName: node
   linkType: hard
 
@@ -3776,7 +3771,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/react@npm:^16.3.0":
+"@testing-library/react-hooks@npm:^8.0.1":
+  version: 8.0.1
+  resolution: "@testing-library/react-hooks@npm:8.0.1"
+  dependencies:
+    "@babel/runtime": "npm:^7.12.5"
+    react-error-boundary: "npm:^3.1.0"
+  peerDependencies:
+    "@types/react": ^16.9.0 || ^17.0.0
+    react: ^16.9.0 || ^17.0.0
+    react-dom: ^16.9.0 || ^17.0.0
+    react-test-renderer: ^16.9.0 || ^17.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    react-dom:
+      optional: true
+    react-test-renderer:
+      optional: true
+  checksum: 10c0/83bef2d4c437b84143213b5275ef00ef14e5bcd344f9ded12b162d253dc3c799138ead4428026b9c725e5a38dbebf611f2898aa43f3e43432bcaccbd7bf413e5
+  languageName: node
+  linkType: hard
+
+"@testing-library/react@npm:^16.0.1":
   version: 16.3.0
   resolution: "@testing-library/react@npm:16.3.0"
   dependencies:
@@ -4259,11 +4276,11 @@ __metadata:
   linkType: hard
 
 "@types/react@npm:*":
-  version: 19.2.2
-  resolution: "@types/react@npm:19.2.2"
+  version: 19.2.5
+  resolution: "@types/react@npm:19.2.5"
   dependencies:
     csstype: "npm:^3.0.2"
-  checksum: 10c0/f830b1204aca4634ce3c6cb3477b5d3d066b80a4dd832a4ee0069acb504b6debd2416548a43a11c1407c12bc60e2dc6cf362934a18fe75fe06a69c0a98cba8ab
+  checksum: 10c0/1f9a92c73a5ea5b167f59cd0b5b9460fde65bd22b63b6d23bfaace8ad38537df127c97657418b4912a7a03a66e6451e82a41b84718d638ec1c8e4f0515d94793
   languageName: node
   linkType: hard
 
@@ -5889,7 +5906,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"currency-codes@npm:^2.1.0":
+"currency-codes@npm:^2.1.0, currency-codes@npm:^2.2.0":
   version: 2.2.0
   resolution: "currency-codes@npm:2.2.0"
   dependencies:
@@ -9938,7 +9955,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongodb-memory-server@npm:^10.1.4":
+"mongodb-memory-server@npm:^10.1.3, mongodb-memory-server@npm:^10.1.4":
   version: 10.3.0
   resolution: "mongodb-memory-server@npm:10.3.0"
   dependencies:
@@ -9994,6 +10011,21 @@ __metadata:
     ms: "npm:2.1.3"
     sift: "npm:17.1.3"
   checksum: 10c0/4d58e2aa0856efb24b79b53b83f5cf146fa4c19b22f85d91e3fade4d656c09d566be115f547bde1c01e1515df284f778aea8e8db5bbe7da8e51e7d6f0b1b84b8
+  languageName: node
+  linkType: hard
+
+"mongoose@npm:^8.9.3":
+  version: 8.19.3
+  resolution: "mongoose@npm:8.19.3"
+  dependencies:
+    bson: "npm:^6.10.4"
+    kareem: "npm:2.6.3"
+    mongodb: "npm:~6.20.0"
+    mpath: "npm:0.9.0"
+    mquery: "npm:5.0.0"
+    ms: "npm:2.1.3"
+    sift: "npm:17.1.3"
+  checksum: 10c0/80e1a27d97178d6052fae5966e9b0c2b23d4740863382be10858d04d39b6b6950fd65d7068eb6378a9da6f10288fe069928aae3dbb16e7444209164d3414b40f
   languageName: node
   linkType: hard
 
@@ -10938,14 +10970,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^19.0.0":
-  version: 19.2.0
-  resolution: "react-dom@npm:19.2.0"
+"react-dom@npm:19.0.0":
+  version: 19.0.0
+  resolution: "react-dom@npm:19.0.0"
   dependencies:
-    scheduler: "npm:^0.27.0"
+    scheduler: "npm:^0.25.0"
   peerDependencies:
-    react: ^19.2.0
-  checksum: 10c0/fa2cae05248d01288e91523b590ce4e7635b1e13f1344e225f850d722a8da037bf0782f63b1c1d46353334e0c696909b82e582f8cad607948fde6f7646cc18d9
+    react: ^19.0.0
+  checksum: 10c0/a36ce7ab507b237ae2759c984cdaad4af4096d8199fb65b3815c16825e5cfeb7293da790a3fc2184b52bfba7ba3ff31c058c01947aff6fd1a3701632aabaa6a9
+  languageName: node
+  linkType: hard
+
+"react-error-boundary@npm:^3.1.0":
+  version: 3.1.4
+  resolution: "react-error-boundary@npm:3.1.4"
+  dependencies:
+    "@babel/runtime": "npm:^7.12.5"
+  peerDependencies:
+    react: ">=16.13.1"
+  checksum: 10c0/f977ca61823e43de2381d53dd7aa8b4d79ff6a984c9afdc88dc44f9973b99de7fd382d2f0f91f2688e24bb987c0185bf45d0b004f22afaaab0f990a830253bfb
   languageName: node
   linkType: hard
 
@@ -10994,27 +11037,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:^6.29.0":
-  version: 6.30.1
-  resolution: "react-router-dom@npm:6.30.1"
+"react-router-dom@npm:6.29.0":
+  version: 6.29.0
+  resolution: "react-router-dom@npm:6.29.0"
   dependencies:
-    "@remix-run/router": "npm:1.23.0"
-    react-router: "npm:6.30.1"
+    "@remix-run/router": "npm:1.22.0"
+    react-router: "npm:6.29.0"
   peerDependencies:
     react: ">=16.8"
     react-dom: ">=16.8"
-  checksum: 10c0/e9e1297236b0faa864424ad7d51c392fc6e118595d4dad4cd542fd217c479a81601a81c6266d5801f04f9e154de02d3b094fc22ccb544e755c2eb448fab4ec6b
+  checksum: 10c0/f89f922006b6ff896ba81d82088812e42ae56790ccb838e7041eebe0f7d36ac2a4eca56512a422da4249cca23f389f998e84cf8ff868d4a83defd72951b8fbf9
   languageName: node
   linkType: hard
 
-"react-router@npm:6.30.1":
-  version: 6.30.1
-  resolution: "react-router@npm:6.30.1"
+"react-router@npm:6.29.0":
+  version: 6.29.0
+  resolution: "react-router@npm:6.29.0"
   dependencies:
-    "@remix-run/router": "npm:1.23.0"
+    "@remix-run/router": "npm:1.22.0"
   peerDependencies:
     react: ">=16.8"
-  checksum: 10c0/0414326f2d8e0c107fb4603cf4066dacba6a1f6f025c6e273f003e177b2f18888aca3de06d9b5522908f0e41de93be1754c37e82aa97b3a269c4742c08e82539
+  checksum: 10c0/0ad27b34e2ccb6db68ef124cd4492ba86b5422ea3e2af01c9de95e372eb3a36fb4727b40488ebc90e5e0cea41bc655c53569a754713554a465ca9423aa233df8
   languageName: node
   linkType: hard
 
@@ -11033,10 +11076,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^19.0.0":
-  version: 19.2.0
-  resolution: "react@npm:19.2.0"
-  checksum: 10c0/1b6d64eacb9324725bfe1e7860cb7a6b8a34bc89a482920765ebff5c10578eb487e6b46b2f0df263bd27a25edbdae2c45e5ea5d81ae61404301c1a7192c38330
+"react@npm:19.0.0":
+  version: 19.0.0
+  resolution: "react@npm:19.0.0"
+  checksum: 10c0/9cad8f103e8e3a16d15cb18a0d8115d8bd9f9e1ce3420310aea381eb42aa0a4f812cf047bb5441349257a05fba8a291515691e3cb51267279b2d2c3253f38471
   languageName: node
   linkType: hard
 
@@ -11361,10 +11404,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:^0.27.0":
-  version: 0.27.0
-  resolution: "scheduler@npm:0.27.0"
-  checksum: 10c0/4f03048cb05a3c8fddc45813052251eca00688f413a3cee236d984a161da28db28ba71bd11e7a3dd02f7af84ab28d39fb311431d3b3772fed557945beb00c452
+"scheduler@npm:^0.25.0":
+  version: 0.25.0
+  resolution: "scheduler@npm:0.25.0"
+  checksum: 10c0/a4bb1da406b613ce72c1299db43759526058fdcc413999c3c3e0db8956df7633acf395cb20eb2303b6a65d658d66b6585d344460abaee8080b4aa931f10eaafe
   languageName: node
   linkType: hard
 

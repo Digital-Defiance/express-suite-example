@@ -2,6 +2,8 @@
 
 A comprehensive TypeScript monorepo providing cryptographic services, internationalization, and Express.js framework components for building secure applications.
 
+Formerly known as Project Albatross. Great Albatrosses are of the largest flying birds, known for their endurance and ability to traverse vast distances. Similarly, Express Suite aims to provide robust and far-reaching solutions for modern web applications.
+
 ## Packages
 
 ### [@digitaldefiance/i18n-lib](https://github.com/Digital-Defiance/i18n-lib) [npm](https://www.npmjs.com/package/@digitaldefiance/i18n-lib)
@@ -53,6 +55,7 @@ Automated generator for MERN stack monorepos with Nx, React 19, Express 5, and M
 Handy test utilities (toThrowType, withConsoleMocks) and more in the near future
 
 **Note**: Package-specific test helpers available via `/testing` entry points:
+
 - `@digitaldefiance/node-express-suite/testing` - Application mocks, test setup
 - `@digitaldefiance/node-ecies-lib/testing` - Backend member mocks  
 - `@digitaldefiance/ecies-lib/testing` - Frontend member mocks

@@ -19,9 +19,6 @@
 [submodule "packages/digitaldefiance-express-suite-test-utils"]
 	path = packages/digitaldefiance-express-suite-test-utils
 	url = https://github.com/Digital-Defiance/test-utils.git
-[submodule "packages/digitaldefiance/express-suite-starter"]
-	path = packages/digitaldefiance/express-suite-starter
-	url = https://github.com/Digital-Defiance/express-suite-starter.git
 [submodule "packages/digitaldefiance-express-suite-starter"]
 	path = packages/digitaldefiance-express-suite-starter
 	url = https://github.com/Digital-Defiance/express-suite-starter.git

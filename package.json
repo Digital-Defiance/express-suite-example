@@ -1,6 +1,6 @@
 {
   "name": "@express-suite/source",
-  "version": "0.0.0",
+  "version": "2.2.0",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -10,7 +10,9 @@
     "build:logged": "yarn build:dev:stream 2>&1 | ansifilter -o build.log",
     "test": "npx nx run-many --target=test --all",
     "test:stream": "npx nx run-many --outputStyle=stream --target=test --all",
-    "test:stream:logged": "yarn test:stream 2>&1 | ansifilter -o test.log",
+    "test:stream:nocache": "npx nx run-many --outputStyle=stream --target=test --all --skip-nx-cache",
+    "test:logged": "yarn test:stream 2>&1 | ansifilter -o test.log",
+    "test:logged:nocache": "npx nx run-many --outputStyle=stream --target=test --all --skip-nx-cache 2>&1 | ansifilter -o test.log",
     "lint": "npx nx run-many --target=lint --all",
     "build:affected": "npx nx affected --target=build",
     "test:affected": "npx nx affected --target=test",
@@ -22,14 +24,14 @@
     "prettier:fix": "prettier --write '**/*.{ts,tsx}'",
     "packages:prettier:fix": "yarn workspaces foreach -p run prettier:fix",
     "format:full": "yarn lint --fix && yarn prettier:fix",
-    "publish:ecies-lib": "npx nx build digitaldefiance-ecies-lib --skip-nx-cache && npm publish dist/packages/digitaldefiance-ecies-lib --access public",
-    "publish:i18n-lib": "npx nx build digitaldefiance-i18n-lib --skip-nx-cache && npm publish dist/packages/digitaldefiance-i18n-lib --access public",
-    "publish:node-ecies-lib": "npx nx build digitaldefiance-node-ecies-lib --skip-nx-cache && npm publish dist/packages/digitaldefiance-node-ecies-lib --access public",
-    "publish:suite-core-lib": "npx nx build digitaldefiance-suite-core-lib --skip-nx-cache && npm publish dist/packages/digitaldefiance-suite-core-lib --access public",
-    "publish:node-express-suite": "npx nx build digitaldefiance-node-express-suite --skip-nx-cache && npm publish dist/packages/digitaldefiance-node-express-suite --access public",
-    "publish:express-suite-test-utils": "npx nx build digitaldefiance-express-suite-test-utils --skip-nx-cache && npm publish dist/packages/digitaldefiance-express-suite-test-utils --access public",
-    "publish:express-suite-react-components": "npx nx build digitaldefiance-express-suite-react-components --skip-nx-cache && npm publish dist/packages/digitaldefiance-express-suite-react-components --access public",
-    "publish:express-suite-starter": "cd packages/digitaldefiance-express-suite-starter && yarn build && npm publish --access public"
+    "publish:ecies-lib": "npx nx build digitaldefiance-ecies-lib --skip-nx-cache && npm publish --registry https://registry.npmjs.org/ dist/packages/digitaldefiance-ecies-lib --access public",
+    "publish:i18n-lib": "npx nx build digitaldefiance-i18n-lib --skip-nx-cache && npm publish --registry https://registry.npmjs.org/ dist/packages/digitaldefiance-i18n-lib --access public",
+    "publish:node-ecies-lib": "npx nx build digitaldefiance-node-ecies-lib --skip-nx-cache && npm publish --registry https://registry.npmjs.org/ dist/packages/digitaldefiance-node-ecies-lib --access public",
+    "publish:suite-core-lib": "npx nx build digitaldefiance-suite-core-lib --skip-nx-cache && npm publish --registry https://registry.npmjs.org/ dist/packages/digitaldefiance-suite-core-lib --access public",
+    "publish:node-express-suite": "npx nx build digitaldefiance-node-express-suite --skip-nx-cache && npm publish --registry https://registry.npmjs.org/ dist/packages/digitaldefiance-node-express-suite --access public",
+    "publish:express-suite-test-utils": "npx nx build digitaldefiance-express-suite-test-utils --skip-nx-cache && npm publish --registry https://registry.npmjs.org/ dist/packages/digitaldefiance-express-suite-test-utils --access public",
+    "publish:express-suite-react-components": "npx nx build digitaldefiance-express-suite-react-components --skip-nx-cache && npm publish --registry https://registry.npmjs.org/ dist/packages/digitaldefiance-express-suite-react-components --access public",
+    "publish:express-suite-starter": "cd packages/digitaldefiance-express-suite-starter && yarn build && npm publish --access public --registry https://registry.npmjs.org/"
   },
   "dependencies": {
     "@ethereumjs/wallet": "^10.0.0",
@@ -88,6 +90,9 @@
     "nx": "22.0.2",
     "prettier": "^2.6.2",
     "prettier-plugin-organize-imports": "^4.1.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-router-dom": "6.29.0",
     "supertest": "^7.1.4",
     "ts-jest": "^29.0.0",
     "tslib": "^2.3.0",
@@ -97,5 +102,9 @@
   "workspaces": [
     "packages/*"
   ],
+  "resolutions": {
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  },
   "packageManager": "yarn@4.10.3"
 }
