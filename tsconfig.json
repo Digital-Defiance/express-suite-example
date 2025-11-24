@@ -4,7 +4,25 @@
   "files": [],
   "references": [
     {
-      "path": "./packages/test-lib"
+      "path": "./packages/digitaldefiance-i18n-lib"
+    },
+    {
+      "path": "./packages/digitaldefiance-ecies-lib"
+    },
+    {
+      "path": "./packages/digitaldefiance-node-ecies-lib"
+    },
+    {
+      "path": "./packages/digitaldefiance-suite-core-lib"
+    },
+    {
+      "path": "./packages/digitaldefiance-node-express-suite"
+    },
+    {
+      "path": "./packages/digitaldefiance-express-suite-test-utils"
+    },
+    {
+      "path": "./packages/digitaldefiance-express-suite-react-components"
     }
   ]
 }

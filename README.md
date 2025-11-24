@@ -1,252 +1,151 @@
 # [Express Suite](https://github.com/Digital-Defiance/express-suite)
 
-A comprehensive TypeScript monorepo providing cryptographic services, internationalization, and Express.js framework components for building secure applications.
+Express Suite is a comprehensive TypeScript monorepo designed to provide a robust foundation for building secure, scalable, and internationalized web applications. It integrates cryptographic services, internationalization (i18n), and Express.js framework components, all structured as modular packages to support modern development workflows.
 
-Formerly known as Project Albatross. Great Albatrosses are of the largest flying birds, known for their endurance and ability to traverse vast distances. Similarly, Express Suite aims to provide robust and far-reaching solutions for modern web applications.
+Formerly known as Project Albatross, the suite draws inspiration from the great albatross bird, symbolizing endurance and the ability to traverse vast distances—qualities reflected in the suite's goal to deliver far-reaching, reliable solutions.
 
-## Packages
+## Overview of Packages
+
+Express Suite is composed of multiple interrelated packages, each serving a specific domain:
 
 ### [@digitaldefiance/i18n-lib [NPM]](https://www.npmjs.com/package/@digitaldefiance/i18n-lib) [[GitHub]](https://github.com/Digital-Defiance/i18n-lib)
 
-Production-ready internationalization library with component-based architecture, type-safe translations, and 8 built-in languages.
+A production-ready TypeScript internationalization library with component-based architecture, type-safe translations, and comprehensive error handling. Features include:
 
-**Features**: Plugin architecture, template processing, context variables, error translation, 91.81% test coverage
+- Production-grade security with protections against prototype pollution, ReDoS, and XSS
+- Industry-standard ICU MessageFormat support with pluralization, gender, and advanced number/date/time formatting
+- Component registration with full type safety and alias support
+- Support for 37 languages with CLDR-compliant plural rules and 8 built-in languages
+- Advanced template processing with component references, aliases, enums, and context variables (currency, timezone, language)
+- Multiple isolated engine instances for different application contexts
+- Fluent builder pattern for clean engine configuration
+- Comprehensive error classes with translation support
+- 93%+ test coverage with 1,700+ tests ensuring reliability and security
+- Full TypeScript support with generic types
+- Browser and Node.js support (Node 18+)
+
+This library is ideal for scalable multilingual applications requiring robust internationalization and security.
 
 ### [@digitaldefiance/ecies-lib [NPM]](https://www.npmjs.com/package/@digitaldefiance/ecies-lib) [[GitHub]](https://github.com/Digital-Defiance/ecies-lib)
 
-Browser-compatible ECIES encryption library with comprehensive key management and authentication services.
+A production-ready, browser-compatible ECIES (Elliptic Curve Integrated Encryption Scheme) library for TypeScript. Built on Web Crypto API and @noble/curves, it offers comprehensive encryption, key management, and authentication services. Features include:
 
-**Features**: ECIES encryption (Simple/Single/Multiple modes), BIP39 mnemonics, HD wallets, file encryption, password login, 393 tests
+- Advanced ECIES v4.0 protocol with HKDF key derivation, AAD binding, and multi-recipient encryption
+- Pluggable ID provider system supporting ObjectId, GUID, UUID, and custom formats
+- Key management with BIP39 mnemonics and HD wallets
+- Memory-efficient streaming encryption for large files
+- Internationalization with automatic error translation in 8 languages
+- Cross-platform compatibility with Node.js 18+ and modern browsers
+- High test coverage with 1200+ passing tests
 
-**Testing**: Test mocks available via `/testing` entry point (requires `@faker-js/faker` dev dependency)
+Ideal for secure client-side and cross-platform cryptographic operations.
 
 ### [@digitaldefiance/node-ecies-lib [NPM]](https://www.npmjs.com/package/@digitaldefiance/node-ecies-lib) [[GitHub]](https://github.com/Digital-Defiance/node-ecies-lib)
 
-Node.js ECIES implementation with binary compatibility to ecies-lib for cross-platform cryptographic operations.
-
-**Features**: Node.js crypto primitives, multi-recipient encryption, PBKDF2 profiles, service container, 220 tests
-
-**Testing**: Test mocks available via `/testing` entry point (requires `@faker-js/faker` dev dependency)
+Node.js implementation of ECIES with binary compatibility to the browser ecies-lib, enabling cross-platform cryptographic operations. Includes Node.js crypto primitives, multi-recipient encryption, PBKDF2 profiles, and a flexible service container architecture. Perfect for backend services requiring secure encryption and key management.
 
 ### [@digitaldefiance/suite-core-lib [NPM]](https://www.npmjs.com/package/@digitaldefiance/suite-core-lib) [[GitHub]](https://github.com/Digital-Defiance/suite-core-lib)
 
-Core primitives for cryptographically-secure user management systems with RBAC and multi-language support.
+A comprehensive library providing higher-level primitives and foundational building blocks for creating cryptographically-secure user management systems and Node.js Express server frameworks. Built on top of `@digitaldefiance/ecies-lib` and `@digitaldefiance/node-ecies-lib`, it powers the full-stack security ecosystem. Key features include:
 
-**Features**: User interfaces, backup codes, account management, role system, 409 tests, 98.47% coverage
+- Secure user accounts and authentication with zero-knowledge proof flows
+- Role-based access control (RBAC) with fine-grained permissions
+- Multi-language internationalization with plugin-based architecture
+- Type-safe interfaces for frontend and backend user models
+- Cryptographically secure backup code generation and management
+- Localized error handling in multiple languages
+- Fluent builder APIs for user and role creation
+- Dynamic model registration for extensibility
+- Integration with Express.js framework and frontend adapters
+- Extensive testing with high coverage and reliability
+- Library of common internationalized strings for use in a typical application
 
 ### [@digitaldefiance/node-express-suite [NPM]](https://www.npmjs.com/package/@digitaldefiance/node-express-suite) [[GitHub]](https://github.com/Digital-Defiance/node-express-suite)
 
-Complete Express.js framework with authentication, RBAC, MongoDB integration, and dynamic model registry.
-
-**Features**: JWT auth, email tokens, ECIES integration, i18n middleware, 604 tests, service container
-
-**Testing**: Test utilities available via `/testing` entry point (requires `@faker-js/faker` dev dependency)
+A complete Express.js framework integrating authentication, RBAC, MongoDB with Mongoose, and a dynamic model registry. Features JWT authentication, email tokens, ECIES integration, i18n middleware, and a service container. Designed for rapid development of secure, internationalized REST APIs with modern best practices.
 
 ### [@digitaldefiance/express-suite-starter [NPM]](https://www.npmjs.com/package/@digitaldefiance/express-suite-starter) [[GitHub]](https://github.com/Digital-Defiance/express-suite-starter)
 
-Automated generator for MERN stack monorepos with Nx, React 19, Express 5, and MongoDB.
-
-**Features**: Interactive CLI, DevContainer options, Mustache templates, plugin system, rollback support, 137 tests
-
-**Quick Start**: `npx @digitaldefiance/express-suite-starter`
+An automated generator for MERN stack monorepos using Nx, React 19, Express 5, and MongoDB. Includes an interactive CLI, DevContainer options, Mustache templates, a plugin system, and rollback support. Simplifies project scaffolding and accelerates development with a modern, extensible starter kit.
 
 ### [@digitaldefiance/express-suite-test-utils [NPM]](https://www.npmjs.com/package/@digitaldefiance/express-suite-test-utils) [[GitHub]](https://github.com/Digital-Defiance/express-suite-test-utils)
 
-Handy test utilities (toThrowType, withConsoleMocks) and more in the near future
+A collection of test utilities to facilitate testing across the suite, including helpers for throwing types, console mocks, localStorage mocks, BSON mocks, React mocks, and in-memory MongoDB. Provides package-specific test helpers via `/testing` entry points for seamless integration. All testing utilities require `@faker-js/faker` as a dev dependency.
 
-**Note**: Package-specific test helpers available via `/testing` entry points:
+### [@digitaldefiance/express-suite-react-components [NPM]](https://www.npmjs.com/package/@digitaldefiance/express-suite-react-components) [[GitHub]](https://github.com/Digital-Defiance/express-suite-react-components)
 
-- `@digitaldefiance/node-express-suite/testing` - Application mocks, test setup
-- `@digitaldefiance/node-ecies-lib/testing` - Backend member mocks  
-- `@digitaldefiance/ecies-lib/testing` - Frontend member mocks
-
-All `/testing` exports require `@faker-js/faker` as a dev dependency.
-
-### [@digitaldefiance/express-suite-react-components [NPM]](https://www.npmjs.com/package/@digitaldefiance/express-suite-react-components) [[GitHub]](https://github.com/Digital-Defiance/react-components)
-
-Production-ready React components for authentication, user management, and internationalization.
-
-**Features**: Auth forms (login, register, backup codes), route guards (PrivateRoute, UnAuthRoute), hooks (useAuth, useI18n), providers (AuthProvider, I18nProvider), UI components (TopMenu, DashboardPage, ApiAccess)
-
-**Components**: LoginForm, RegisterForm, BackupCodeLoginForm, ChangePasswordForm, LogoutPage, VerifyEmailPage, BackupCodesForm
-
-**Wrappers**: Pre-configured wrapper components connecting forms to hooks for drop-in usage
+Production-ready React components for authentication, user management, and internationalization. Includes auth forms (login, register, backup codes), route guards (PrivateRoute, UnAuthRoute), hooks (useAuth, useI18n), providers (AuthProvider, I18nProvider), and UI components (TopMenu, DashboardPage, ApiAccess). Pre-configured wrappers enable easy integration into React applications.
 
 ### [@digitaldefiance/express-suite-example [GitHub]](https://github.com/Digital-Defiance/express-suite-example)
 
-Complete reference implementation demonstrating Express Suite integration in a production MERN stack.
+A complete reference implementation demonstrating how to integrate Express Suite in a production MERN stack. Serves as a learning resource, starter template, and best practices reference for building secure, scalable, and internationalized web applications.
 
-**Features**: Full authentication flow, i18n setup, MongoDB integration, React 19 + Express 5, DevContainer configuration
+## Key Features
 
-**Use Cases**: Learning resource, starter template, integration testing, best practices reference
+- **🔐 End-to-End Encryption**: Secure ECIES encryption using secp256k1 and AES-256-GCM, ensuring data confidentiality.
+- **🌍 Internationalization**: Supports 8 languages with a flexible plugin architecture for easy localization.
+- **🔑 Key Management**: Implements BIP39 mnemonics, HD wallets, and secure storage for cryptographic keys.
+- **👥 User Management**: Role-based access control, JWT authentication, email verification, and backup codes.
+- **📊 Database Integration**: MongoDB with Mongoose and a dynamic model registry for flexible data modeling.
+- **🧪 Extensive Testing**: Over 2000 tests across all packages ensuring reliability and robustness.
+- **🏗️ Modern Architecture**: Utilizes service containers, builders, fluent APIs, and plugin systems for extensibility.
+- **⚡ Developer Experience**: Interactive CLI tools, DevContainer support, and automated monorepo scaffolding.
+- **🔄 Seamless Integration**: Cross-platform cryptography libraries compatible between browser and Node.js environments.
 
-## Development/Contribution Quick Start
+## Development and Contribution
 
-### Clone with Submodules
+### Cloning the Repository
 
 ```bash
-# Clone with all submodules
 git clone --recursive https://github.com/Digital-Defiance/express-suite.git
-
-# Or if already cloned, initialize submodules
+# Or if already cloned
 git submodule update --init --recursive
 ```
 
 ### Working with Submodules
 
 ```bash
-# Update all submodules to latest
 git submodule update --remote --merge
-
-# Pull changes including submodules
 git pull --recurse-submodules
-
-# Check submodule status
 git submodule status
 ```
 
-### Build and Test
+### Building and Testing
 
 ```bash
-# Install dependencies
 yarn install
-
-# Build all packages
 yarn build
-
-# Run tests
 yarn test
 ```
 
-## Architecture
-
-```
-express-suite/
-├── digitaldefiance-i18n-lib/                      # Internationalization
-├── digitaldefiance-ecies-lib/                     # Browser crypto
-├── digitaldefiance-node-ecies-lib/                # Node.js crypto
-├── digitaldefiance-suite-core-lib/                # User management primitives
-├── digitaldefiance-node-express-suite/            # Express.js framework
-├── digitaldefiance-express-suite-starter/         # Monorepo generator
-├── digitaldefiance-express-suite-test-utils/      # Test utilities
-├── digitaldefiance-express-suite-react-components/ # React components
-└── digitaldefiance-express-suite-example/         # Example implementation
-```
-
-## Key Features
-
-- **🔐 End-to-End Encryption**: ECIES with secp256k1, AES-256-GCM
-- **🌍 Internationalization**: 8 languages with plugin architecture
-- **🔑 Key Management**: BIP39 mnemonics, HD wallets, secure storage
-- **👥 User Management**: RBAC, JWT auth, email verification
-- **📊 Database**: MongoDB with Mongoose, dynamic model registry
-- **🧪 Testing**: 2000+ tests across all packages
-- **🏗️ Modern Architecture**: Service containers, builders, fluent APIs
-
-## Development
+### Running Specific Package Commands
 
 ```bash
-# Build specific package
+# Build a specific package
 yarn nx build digitaldefiance-i18n-lib
 
-# Test specific package
+# Test a specific package
 yarn nx test digitaldefiance-ecies-lib
 
-# Lint all
+# Lint all packages
 yarn nx run-many --target=lint --all
 ```
 
-As always, see [package.json](./package.json)
+## Architecture Overview
+
+```
+express-suite/
+├── digitaldefiance-i18n-lib/                      # Internationalization library
+├── digitaldefiance-ecies-lib/                     # Browser ECIES cryptography
+├── digitaldefiance-node-ecies-lib/                # Node.js ECIES cryptography
+├── digitaldefiance-suite-core-lib/                # Core user management primitives
+├── digitaldefiance-node-express-suite/            # Express.js framework with auth and DB
+├── digitaldefiance-express-suite-starter/         # Monorepo generator CLI
+├── digitaldefiance-express-suite-test-utils/      # Test utilities
+├── digitaldefiance-express-suite-react-components/ # React UI components
+└── digitaldefiance-express-suite-example/         # Example MERN stack implementation
+```
 
 ## License
 
 MIT © Digital Defiance, Jessica Mulein
-
-## ChangeLog
-
-### v2.2.1
-
-- Update example
-- Update starter
-
-### v2.1.27
-
-- Added new express-suite-test-utils dependency
-
-### v2.1.25
-
-**Comprehensive Quality & Stability Release** - Major improvements across all packages with enhanced testing, coverage, and type safety.
-
-#### All Packages
-
-- **UPGRADED**: All inter-package dependencies to v2.1.25 for consistency
-- **IMPROVED**: Test coverage and reliability across the suite
-- **FIXED**: i18n aliasing and component registration issues
-- **ENHANCED**: Type safety and error handling throughout
-
-#### @digitaldefiance/i18n-lib
-
-- **IMPROVED**: Test coverage to 91.81% (714 tests passing)
-- **ADDED**: `registerIfNotExists()` methods for safe component registration
-- **ADDED**: Constants management with `updateConstants()` and `mergeConstants()`
-- **FIXED**: Component alias resolution in `t()` function
-- **ENHANCED**: Context variable injection with CurrencyCode and Timezone support
-
-#### @digitaldefiance/ecies-lib
-
-- **IMPROVED**: Test suite with 393 tests (100% passing)
-- **ADDED**: Frontend member mock for testing
-- **UPGRADED**: i18n integration with automatic engine retrieval
-- **ENHANCED**: Error translation in 8 languages
-- **FIXED**: PBKDF2 profile lookup and validation
-
-#### @digitaldefiance/node-ecies-lib
-
-- **IMPROVED**: 220/220 tests passing (100% success rate)
-- **ADDED**: Backend member mock for testing
-- **MAINTAINED**: 100% binary compatibility with browser ecies-lib
-- **ENHANCED**: Service container and builder patterns
-- **FIXED**: Constructor signatures for simplified API
-
-#### @digitaldefiance/suite-core-lib
-
-- **MAINTAINED**: 409 tests with 98.47% statement coverage
-- **ADDED**: Additional string keys for internationalization
-- **UPGRADED**: Dependencies (i18n-lib, ecies-lib)
-- **ENHANCED**: Validation builders with custom constants support
-- **FIXED**: Translation key processing and template handling
-
-#### @digitaldefiance/node-express-suite
-
-- **IMPROVED**: 604 tests passing (100% success rate)
-- **IMPROVED**: Code coverage to 57.86% (+4.51%)
-- **ADDED**: Concrete ApplicationConcrete class for testing
-- **ADDED**: DummyEmailService for test environments
-- **ADDED**: Comprehensive mocks and fixtures
-- **FIXED**: i18n initialization in database setup
-- **FIXED**: Validation builder chain initialization
-- **ENHANCED**: Clean test output with proper console mocking
-- **STREAMLINED**: Application generics for better usability
-
-#### Testing Highlights
-
-- **2000+ tests** across all packages
-- **100% pass rate** in all test suites
-- **Enhanced coverage** in critical paths
-- **Improved reliability** with proper initialization
-- **Better mocking** for isolated unit tests
-
-#### Developer Experience
-
-- **Simplified APIs** with reduced generic complexity
-- **Better type inference** throughout
-- **Comprehensive mocks** for testing
-- **Improved documentation** with examples
-- **Consistent patterns** across packages
-
-#### Migration Notes
-
-- **Backward compatible** - No breaking changes
-- **Drop-in replacement** for v2.1.x versions
-- **Automatic upgrades** for inter-package dependencies
-- **Safe to upgrade** with existing codebases

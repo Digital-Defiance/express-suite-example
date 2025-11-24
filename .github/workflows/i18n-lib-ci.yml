@@ -1,0 +1,36 @@
+name: I18n Library CI
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'packages/digitaldefiance-i18n-lib/**'
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - 'packages/digitaldefiance-i18n-lib/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Run tests
+        run: npx nx test digitaldefiance-i18n-lib
+
+      - name: Check for circular dependencies
+        run: npx nx check-circular-deps digitaldefiance-i18n-lib
+
+      - name: Run linter
+        run: npx nx lint digitaldefiance-i18n-lib

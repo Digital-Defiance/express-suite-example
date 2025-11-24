@@ -24,7 +24,7 @@
       "iterator-dispose-shim"
     ],
     "typeRoots": [
-      "../types",
+      "./types",
       "./node_modules/@types"
     ],
     "strict": true,
