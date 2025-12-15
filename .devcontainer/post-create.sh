@@ -1,0 +1,54 @@
+#!/bin/bash
+set -e
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+WORKSPACE=$(realpath "${SCRIPT_DIR}/..")
+
+echo "Post-create setup starting..."
+
+cd ${WORKSPACE} && source .devcontainer/load-env.sh
+
+# Basic git setup
+git config --global --add safe.directory ${WORKSPACE} 2>/dev/null || true
+
+cd ${WORKSPACE} && ./setup-nvm.sh
+cd ${WORKSPACE} && ./ensure-git-globals.sh
+cd ${WORKSPACE} && ./recover-yarn.sh
+
+cd ${WORKSPACE} && export COREPACK_ENABLE_DOWNLOAD_PROMPT=0 && yes | corepack enable
+
+# Setup Yarn Berry
+echo "Setting up Yarn Berry..."
+cd ${WORKSPACE} && corepack prepare yarn@${DEFAULT_YARN_VERSION} --activate && corepack yarn set version ${DEFAULT_YARN_VERSION} || echo "Yarn Berry setup failed"
+
+# Install dependencies
+echo "Installing dependencies..."
+cd ${WORKSPACE} && corepack yarn config set nodeLinker node-modules
+
+MAX_ATTEMPTS=5;
+WAIT_TIME=2;
+REGISTRY_URL=http://host.docker.internal:4873/;
+ATTEMPTS=0;
+echo 'Waiting for Verdaccio registry at $REGISTRY_URL (Max 10s total, 4s timeout per attempt)...';
+while [ $ATTEMPTS -lt $MAX_ATTEMPTS ]; do
+  # Increased timeouts for cross-host networking stability: 2s connect, 4s total time.
+  if curl -sS -o /dev/null --fail --connect-timeout 2 --max-time 4 $REGISTRY_URL; then
+    echo 'Verdaccio detected. Configuring NPM and YARN.';
+      npm config set registry $REGISTRY_URL --location=project;
+      yarn config set npmRegistryServer $REGISTRY_URL;
+      VERDACCIO=1;
+      break;
+  fi;
+  sleep $WAIT_TIME;
+  ATTEMPTS=$((ATTEMPTS + 1));
+done;
+[ -z "$VERDACCIO" ] && echo 'Verdaccio not detected after 5 attempts. Using default public registry.';
+
+cd ${WORKSPACE} && ./npm-install-globals.sh
+cd ${WORKSPACE} && ./do-yarn.sh || echo "Dependency installation failed"
+
+cd ${WORKSPACE} && /usr/local/bin/mkcert localhost 127.0.0.1 ::1 express-suite.digitaldefiance.org
+
+echo ""
+cd ${WORKSPACE} && yarn playwright install --with-deps || echo "Playwright installation failed"
+
+echo "Post-create setup complete"
