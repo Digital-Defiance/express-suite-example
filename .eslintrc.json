@@ -1,20 +1,11 @@
 {
   "root": true,
   "ignorePatterns": [
-    "**/*",
-    "packages/digitaldefiance-i18n-lib/**",
-    "packages/digitaldefiance-ecies-lib/**",
-    "packages/digitaldefiance-node-ecies-lib/**",
-    "packages/digitaldefiance-suite-core-lib/**",
-    "packages/digitaldefiance-node-express-suite/**",
-    "packages/digitaldefiance-express-suite-react-components/**",
-    "packages/digitaldefiance-express-suite-test-utils/**",
-    "packages/digitaldefiance-express-suite-starter/**",
-    "packages/digitaldefiance-express-suite-example/**",
-    "packages/digitaldefiance-mongoose-types/**"
+    "**/*"
   ],
   "plugins": [
-    "@nx"
+    "@nx",
+    "react-hooks"
   ],
   "overrides": [
     {
@@ -47,25 +38,32 @@
         "*.ts",
         "*.tsx"
       ],
-      "extends": [
-        "@nx/typescript"
+      "excludedFiles": [
+        "*.d.ts"
       ],
+      "extends": [
+        "plugin:@typescript-eslint/recommended"
+      ],
+      "parserOptions": {
+        "project": [
+          "tsconfig.*?.json"
+        ]
+      },
       "rules": {
         "@typescript-eslint/no-explicit-any": "error",
         "@typescript-eslint/no-unsafe-assignment": "error",
         "@typescript-eslint/no-unsafe-call": "error",
         "@typescript-eslint/no-unsafe-member-access": "error",
         "@typescript-eslint/no-unsafe-return": "error",
-        "@typescript-eslint/no-unsafe-argument": "error"
+        "@typescript-eslint/no-unsafe-argument": "error",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn"
       }
     },
     {
       "files": [
         "*.js",
         "*.jsx"
-      ],
-      "extends": [
-        "@nx/javascript"
       ],
       "rules": {}
     }
