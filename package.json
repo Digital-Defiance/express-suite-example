@@ -96,7 +96,7 @@
     "@digitaldefiance/i18n-lib": "^3.8.16",
     "@digitaldefiance/mongoose-types": "^8.20.9",
     "@digitaldefiance/node-ecies-lib": "^4.12.8",
-    "@digitaldefiance/node-express-suite": "^3.7.3",
+    "@digitaldefiance/node-express-suite": "^3.7.4",
     "@digitaldefiance/suite-core-lib": "^3.6.47",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
