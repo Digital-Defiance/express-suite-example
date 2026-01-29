@@ -1,0 +1,99 @@
+import {
+  CoreLanguageCode,
+  LanguageCodes,
+  GlobalActiveContext,
+  IActiveContext,
+  LanguageContextSpace,
+  getCoreLanguageDefinitions,
+  I18nBuilder,
+  I18nEngine,
+} from '@digitaldefiance/i18n-lib';
+import { AppConstants } from './constants';
+import { DigitalDefianceExpressSuiteStarterStringKey } from './enumerations/digital-defiance-express-suite-starter-string-key';
+import { Strings } from './strings-collection';
+import { createSuiteCoreComponentConfig } from '@digitaldefiance/suite-core-lib';
+
+export const ComponentId = 'DigitalDefianceExpressSuiteStarter';
+
+const componentStrings = {
+  [LanguageCodes.EN_US]: Strings[LanguageCodes.EN_US],
+  [LanguageCodes.EN_GB]: Strings[LanguageCodes.EN_GB],
+  [LanguageCodes.FR]: Strings[LanguageCodes.FR],
+  [LanguageCodes.ES]: Strings[LanguageCodes.ES],
+  [LanguageCodes.DE]: Strings[LanguageCodes.DE],
+  [LanguageCodes.ZH_CN]: Strings[LanguageCodes.ZH_CN],
+  [LanguageCodes.JA]: Strings[LanguageCodes.JA],
+  [LanguageCodes.UK]: Strings[LanguageCodes.UK],
+};
+
+let i18nEngine: I18nEngine;
+if (I18nEngine.hasInstance('default')) {
+  i18nEngine = I18nEngine.getInstance('default');
+  i18nEngine.mergeConstants(AppConstants);
+} else {
+  i18nEngine = I18nBuilder.create()
+    .withLanguages(getCoreLanguageDefinitions())
+    .withDefaultLanguage(LanguageCodes.EN_US)
+    .withFallbackLanguage(LanguageCodes.EN_US)
+    .withValidation({
+      requireCompleteStrings: false,
+      allowPartialRegistration: true,
+    })
+    .withConstants(AppConstants)
+    .withInstanceKey('default')
+    .build();
+
+  i18nEngine.register(createSuiteCoreComponentConfig());
+}
+
+export { i18nEngine };
+
+const registrationResult = i18nEngine.registerIfNotExists({
+  id: ComponentId,
+  strings: componentStrings,
+  aliases: ['DigitalDefianceExpressSuiteStarterStringKey'],
+});
+
+if (!registrationResult.isValid) {
+  console.warn('Component has missing translations:', registrationResult.errors);
+}
+
+const globalContext = GlobalActiveContext.getInstance<CoreLanguageCode, IActiveContext<CoreLanguageCode>>();
+globalContext.createContext(LanguageCodes.EN_US, LanguageCodes.EN_US, ComponentId);
+
+export const i18nContext: IActiveContext<CoreLanguageCode> = {
+  get language() {
+    return globalContext.getContext(ComponentId).language;
+  },
+  get adminLanguage() {
+    return globalContext.getContext(ComponentId).adminLanguage;
+  },
+  get currentContext() {
+    return globalContext.getContext(ComponentId).currentContext;
+  },
+  get currencyCode() {
+    return globalContext.getContext(ComponentId).currencyCode;
+  },
+  get timezone() {
+    return globalContext.getContext(ComponentId).timezone;
+  },
+  get adminTimezone() {
+    return globalContext.getContext(ComponentId).adminTimezone;
+  },
+};
+
+export const translate = (
+  name: DigitalDefianceExpressSuiteStarterStringKey,
+  variables?: Record<string, string | number>,
+  language?: CoreLanguageCode,
+  context?: LanguageContextSpace,
+): string => {
+  const activeContext = context ?? globalContext.getContext(ComponentId).currentContext;
+  const lang =
+    language ??
+    (activeContext === 'admin'
+      ? globalContext.getContext(ComponentId).adminLanguage
+      : globalContext.getContext(ComponentId).language);
+
+  return i18nEngine.translate(ComponentId, name, variables, lang);
+};

@@ -1,0 +1,26 @@
+import { App, Environment, Constants } from '@express-suite-starter/api-lib';
+import { DatabaseInitializationService } from '@digitaldefiance/node-express-suite';
+import { GlobalActiveContext, CoreLanguageCode, IActiveContext } from '@digitaldefiance/i18n-lib';
+import { join } from 'path';
+
+const env: Environment = new Environment(
+  join(App.distDir, 'express-suite-starter-api', '.env'),
+);
+const app: App = new App(
+  env,
+  DatabaseInitializationService.initUserDb.bind(DatabaseInitializationService),
+  DatabaseInitializationService.serverInitResultHash.bind(DatabaseInitializationService),
+  Constants,
+);
+const context = GlobalActiveContext.getInstance<CoreLanguageCode, IActiveContext<CoreLanguageCode>>();
+context.languageContextSpace = 'admin';
+(async () => {
+  try {
+    await app.start();
+  } catch (error) {
+    console.error('Failed to start the application:', error instanceof Error ? error.message : error);
+    console.error('Stack trace:', error instanceof Error ? error.stack : 'No stack trace');
+    console.error('Full error object:', JSON.stringify(error, null, 2));
+    process.exit(1);
+  }
+})();

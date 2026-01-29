@@ -1,0 +1,9 @@
+{
+  "name": "express-suite-starter-react-lib",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "express-suite-starter-react-lib/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project express-suite-starter-react-lib --web",
+  "targets": {}
+}
