@@ -91,7 +91,7 @@
     "@scure/bip39": "1.3.0"
   },
   "dependencies": {
-    "@aws-sdk/client-ses": "^3.985.0",
+    "@aws-sdk/client-ses": "^3.986.0",
     "@digitaldefiance/ecies-lib": "^4.18.0",
     "@digitaldefiance/express-suite-react-components": "^2.13.11",
     "@digitaldefiance/i18n-lib": "^4.5.0",
