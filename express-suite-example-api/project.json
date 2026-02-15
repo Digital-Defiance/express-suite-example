@@ -1,0 +1,133 @@
+{
+  "name": "express-suite-example-api",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "express-suite-example-api/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/express-suite-example-api",
+        "format": [
+          "cjs"
+        ],
+        "bundle": true,
+        "main": "express-suite-example-api/src/main.ts",
+        "tsConfig": "express-suite-example-api/tsconfig.app.json",
+        "assets": [
+          {
+            "input": "express-suite-example-api/src/assets",
+            "glob": "**/*",
+            "output": "assets"
+          },
+          {
+            "input": "express-suite-example-api/src/views",
+            "glob": "**/*",
+            "output": "views"
+          }
+        ],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        },
+        "skipTypeCheck": true
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "esbuildOptions": {
+            "sourcemap": false,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        }
+      }
+    },
+    "prune-lockfile": {
+      "dependsOn": [
+        "build"
+      ],
+      "cache": true,
+      "executor": "@nx/js:prune-lockfile",
+      "outputs": [
+        "{workspaceRoot}/dist/express-suite-example-api/package.json",
+        "{workspaceRoot}/dist/express-suite-example-api/yarn.lock"
+      ],
+      "options": {
+        "buildTarget": "build"
+      }
+    },
+    "copy-workspace-modules": {
+      "dependsOn": [
+        "build"
+      ],
+      "cache": true,
+      "outputs": [
+        "{workspaceRoot}/dist/express-suite-example-api/workspace_modules"
+      ],
+      "executor": "@nx/js:copy-workspace-modules",
+      "options": {
+        "buildTarget": "build"
+      }
+    },
+    "prune": {
+      "dependsOn": [
+        "prune-lockfile",
+        "copy-workspace-modules"
+      ],
+      "executor": "nx:noop"
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "nx:run-commands",
+      "defaultConfiguration": "development",
+      "dependsOn": [
+        "post-build"
+      ],
+      "options": {
+        "cwd": "dist/express-suite-example-api",
+        "command": "node main.js"
+      },
+      "configurations": {
+        "development": {
+          "cwd": "dist/express-suite-example-api",
+          "command": "node main.js"
+        },
+        "production": {
+          "cwd": "dist/express-suite-example-api",
+          "command": "node main.js"
+        }
+      }
+    },
+    "test": {
+      "options": {
+        "passWithNoTests": true
+      }
+    },
+    "copy-env": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cp express-suite-example-api/.env dist/express-suite-example-api/.env"
+      }
+    },
+    "post-build": {
+      "executor": "nx:run-commands",
+      "dependsOn": [
+        "build"
+      ],
+      "options": {
+        "command": "cp express-suite-example-api/.env dist/express-suite-example-api/.env"
+      }
+    }
+  }
+}
