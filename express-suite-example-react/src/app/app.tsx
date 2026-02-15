@@ -1,0 +1,170 @@
+import { Box, CssBaseline } from '@mui/material';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { FC, useCallback } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import '../styles.scss';
+import SplashPage from './pages/SplashPage';
+import { createAppTheme } from './theme.tsx';
+import { AppThemeProvider, DashboardPage, MenuProvider, I18nProvider as TranslationProvider, AuthProvider, SuiteConfigProvider, ApiAccess, ChangePasswordFormWrapper, VerifyEmailPageWrapper, RegisterFormWrapper, UserSettingsFormWrapper, LogoutPageWrapper, LoginFormWrapper, PrivateRoute, UnAuthRoute, TopMenu, TranslatedTitle, BackupCodeLoginWrapper, BackupCodesWrapper } from '@digitaldefiance/express-suite-react-components';
+import { environment } from '../environments/environment';
+import { DigitaldefianceExpressSuiteExampleStringKey, ComponentId, i18nEngine } from '@express-suite-example/lib';
+import AlbatrossLogo from '../assets/albatross.svg';
+import { AppConstants, EciesConfig } from '@express-suite-example/lib';
+import { appMenuConfigs } from './menus';
+import { LanguageRegistry } from '@digitaldefiance/i18n-lib';
+import { SuiteCoreComponentId, SuiteCoreStringKey, SuiteCoreStringKeyValue } from '@digitaldefiance/suite-core-lib';
+
+const getApiBaseUrl = () => {
+  if (
+    typeof window !== 'undefined' &&
+    (window as any).APP_CONFIG &&
+    (window as any).APP_CONFIG.apiUrl
+  ) {
+    return (window as any).APP_CONFIG.apiUrl;
+  }
+  return environment.apiUrl;
+};
+
+const API_BASE_URL = getApiBaseUrl();
+
+const AuthProviderWithNavigation: FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const navigate = useNavigate();
+
+  const handleLogout = useCallback(() => {
+    navigate('/');
+  }, [navigate]);
+
+  return (
+    <SuiteConfigProvider
+      baseUrl={API_BASE_URL}
+      routes={ {
+        dashboard: '/dashboard',
+        login: '/login',
+        register: '/register',
+        verifyEmail: '/verify-email',
+        settings: '/user-settings',
+      } }
+      languages={LanguageRegistry.getCodeLabelMap()}
+    >
+      <AuthProvider
+        baseUrl={API_BASE_URL}
+        constants={AppConstants}
+        eciesConfig={EciesConfig}
+        onLogout={handleLogout}
+      >
+        {children}
+      </AuthProvider>
+    </SuiteConfigProvider>
+  );
+};
+
+const App: FC = () => {
+  return (
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <TranslationProvider i18nEngine={i18nEngine}>
+        <TranslatedTitle<SuiteCoreStringKeyValue>
+          componentId={SuiteCoreComponentId}
+          stringKey={SuiteCoreStringKey.Common_SiteTemplate} />
+        <AppThemeProvider customTheme={createAppTheme}>
+          <CssBaseline />
+          <AuthProviderWithNavigation>
+            <InnerApp />
+          </AuthProviderWithNavigation>
+        </AppThemeProvider>
+      </TranslationProvider>
+    </LocalizationProvider>
+  );
+};
+
+const LogoComponent = () => <img src={AlbatrossLogo} alt="Logo" />;
+
+const InnerApp: FC = () => {
+  return (
+    <MenuProvider menuConfigs={appMenuConfigs}>
+      <Box className="app-container" sx={ { paddingTop: '64px' } }>
+        <TopMenu Logo={<LogoComponent />} />
+        <Routes>
+          <Route path="/" element={<SplashPage />} />
+          <Route
+            path="/api-access"
+            element={
+              <PrivateRoute>
+                <ApiAccess />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/backup-code" element={<BackupCodeLoginWrapper />} />
+          <Route
+            path="/backup-codes"
+            element={
+              <PrivateRoute>
+                <BackupCodesWrapper />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <UnAuthRoute>
+                <LoginFormWrapper />
+              </UnAuthRoute>
+            }
+          />
+          <Route
+            path="/logout"
+            element={
+              <PrivateRoute>
+                <LogoutPageWrapper />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <UnAuthRoute>
+                <RegisterFormWrapper />
+              </UnAuthRoute>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <DashboardPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/change-password"
+            element={
+              <PrivateRoute>
+                <ChangePasswordFormWrapper />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/verify-email"
+            element={
+              <UnAuthRoute>
+                <VerifyEmailPageWrapper />
+              </UnAuthRoute>
+            }
+          />
+          <Route
+            path="/user-settings"
+            element={
+              <PrivateRoute>
+                <UserSettingsFormWrapper />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </Box>
+    </MenuProvider>
+  );
+};
+
+export default App;
