@@ -2134,7 +2134,6 @@ __metadata:
     "@typescript-eslint/parser": "npm:^8.55.0"
     "@vitejs/plugin-react": "npm:^4.2.0"
     "@vitest/ui": "npm:^4.0.0"
-    ajv: "npm:^8.0.0"
     axios: "npm:^1.13.5"
     babel-jest: "npm:^30.0.2"
     bcrypt: "npm:^6.0.0"
