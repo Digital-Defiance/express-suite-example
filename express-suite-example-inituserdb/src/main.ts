@@ -1,0 +1,222 @@
+import {
+  BaseApplication,
+  MongoDatabasePlugin,
+  DatabaseInitializationService,
+  Environment,
+  IServerInitResult,
+  getSchemaMap,
+} from '@digitaldefiance/node-express-suite';
+
+// Simple debugLog implementation
+function debugLog(debug: boolean, type: 'log' | 'warn' | 'error', ...args: any[]): void {
+  if (debug) {
+    console[type](...args);
+  }
+}
+import { Constants as AppConstants } from '@express-suite-example/api-lib';
+import { GlobalActiveContext, IActiveContext } from '@digitaldefiance/i18n-lib';
+import { IECIESConfig } from '@digitaldefiance/ecies-lib';
+import { ECIESService } from '@digitaldefiance/node-ecies-lib';
+import {
+  CoreLanguageCode,
+} from '@digitaldefiance/i18n-lib';
+import { getSuiteCoreI18nEngine, getSuiteCoreTranslation, IFailableResult, SuiteCoreStringKey } from '@digitaldefiance/suite-core-lib';
+import { randomBytes } from 'crypto';
+import { join } from 'path';
+
+async function main() {
+  const context = GlobalActiveContext.getInstance<CoreLanguageCode, IActiveContext<CoreLanguageCode>>();
+  context.languageContextSpace = 'admin';
+
+  const config: IECIESConfig = {
+    curveName: AppConstants.ECIES.CURVE_NAME,
+    primaryKeyDerivationPath: AppConstants.ECIES.PRIMARY_KEY_DERIVATION_PATH,
+    mnemonicStrength: AppConstants.ECIES.MNEMONIC_STRENGTH,
+    symmetricAlgorithm: AppConstants.ECIES.SYMMETRIC_ALGORITHM_CONFIGURATION,
+    symmetricKeyBits: AppConstants.ECIES.SYMMETRIC.KEY_BITS,
+    symmetricKeyMode: AppConstants.ECIES.SYMMETRIC.MODE,
+  };
+  const eciesService = new ECIESService(config);
+  if (process.argv.includes('--gen-system-user-mnemonic')) {
+    const mnemonic = eciesService.generateNewMnemonic();
+    process.env.ADMIN_MNEMONIC = mnemonic.value;
+    console.log(
+      `ADMIN_MNEMONIC="${mnemonic.value}"\n`,
+      getSuiteCoreTranslation(
+        SuiteCoreStringKey.Admin_MakeSureToSetItInEnv,
+      ),
+    );
+  }
+  if (process.argv.includes('--gen-member-user-mnemonic')) {
+    const mnemonic = eciesService.generateNewMnemonic();
+    process.env.MEMBER_MNEMONIC = mnemonic.value;
+    console.log(
+      `MEMBER_MNEMONIC="${mnemonic.value}"\n`,
+      getSuiteCoreTranslation(
+        SuiteCoreStringKey.Admin_MakeSureToSetItInEnv,
+      ),
+    );
+  }
+  if (process.argv.includes('--gen-mnemonic-hmac-secret')) {
+    const mnemonicHmacSecret = randomBytes(32).toString('hex');
+    process.env.MNEMONIC_HMAC_SECRET = mnemonicHmacSecret;
+    console.log(
+      `MNEMONIC_HMAC_SECRET="${mnemonicHmacSecret}"\n`,
+      getSuiteCoreTranslation(
+        SuiteCoreStringKey.Admin_MakeSureToSetItInEnv,
+      ),
+    );
+  }
+  if (process.argv.includes('--gen-mnemonic-encryption-key')) {
+    const mnemonicEncryptionKey = randomBytes(32).toString('hex');
+    process.env.MNEMONIC_ENCRYPTION_KEY = mnemonicEncryptionKey;
+    console.log(
+      `MNEMONIC_ENCRYPTION_KEY="${mnemonicEncryptionKey}"\n`,
+      getSuiteCoreTranslation(
+        SuiteCoreStringKey.Admin_MakeSureToSetItInEnv,
+      ),
+    );
+  }
+
+  const envDir = join(
+    BaseApplication.distDir,
+    'express-suite-example-inituserdb',
+    '.env',
+  );
+  const env: Environment = new Environment(envDir, true);
+
+  // Create MongoDatabasePlugin for database lifecycle management
+  const mongoPlugin = new MongoDatabasePlugin({
+    schemaMapFactory: getSchemaMap,
+    databaseInitFunction: DatabaseInitializationService.initUserDb,
+    initResultHashFunction: DatabaseInitializationService.serverInitResultHash,
+    environment: env,
+    constants: AppConstants,
+  });
+
+  // Create a no-op IDatabase since MongoDatabasePlugin manages its own connection
+  const noOpDb = {
+    collection() { throw new Error('Use MongoDatabasePlugin'); },
+    startSession() { throw new Error('Use MongoDatabasePlugin'); },
+    withTransaction() { throw new Error('Use MongoDatabasePlugin'); },
+    listCollections() { return []; },
+    async dropCollection() { return false; },
+    async connect() { /* no-op */ },
+    async disconnect() { /* no-op */ },
+    isConnected() { return false; },
+  };
+
+  const app = new BaseApplication(env, noOpDb as never, AppConstants);
+  context.languageContextSpace = 'admin';
+  const shouldDropDatabase = process.argv.includes('--drop');
+  debugLog(
+    app.environment.detailedDebug,
+    'log',
+    getSuiteCoreTranslation(SuiteCoreStringKey.Admin_TransactionsEnabledDisabledTemplate, {
+      STATE: getSuiteCoreTranslation(
+        app.environment.mongo.useTransactions
+          ? SuiteCoreStringKey.Common_Enabled
+          : SuiteCoreStringKey.Common_Disabled,
+      ),
+    }),
+  );
+  let exitCode = 1;
+
+  // Connect the plugin
+  await mongoPlugin.connect();
+  await mongoPlugin.init(app as never);
+  app.authProvider = mongoPlugin.authenticationProvider;
+
+  if (shouldDropDatabase) {
+    const result = await DatabaseInitializationService.dropDatabase(
+      mongoPlugin.db.connection,
+    );
+    if (result) {
+      debugLog(
+        app.environment.detailedDebug,
+        'log',
+        getSuiteCoreTranslation(SuiteCoreStringKey.Admin_DatabaseDropped),
+      );
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      debugLog(
+        app.environment.detailedDebug,
+        'log',
+        getSuiteCoreTranslation(SuiteCoreStringKey.Admin_ProceedingToDbInitialization),
+      );
+    } else {
+      debugLog(
+        app.environment.detailedDebug,
+        'error',
+        getSuiteCoreTranslation(SuiteCoreStringKey.Admin_Error_FailedToDropDatabase),
+      );
+      await mongoPlugin.disconnect();
+      process.exit(2);
+    }
+  }
+  debugLog(
+    app.environment.detailedDebug,
+    'log',
+    getSuiteCoreTranslation(SuiteCoreStringKey.Admin_StartingDbInitialization),
+  );
+  const mongoApp = mongoPlugin.mongoApplication;
+  if (!mongoApp) {
+    console.error('MongoPlugin was not initialized — mongoApplication is undefined');
+    await mongoPlugin.disconnect();
+    process.exit(2);
+  }
+  const result: IFailableResult<IServerInitResult> =
+    await DatabaseInitializationService.initUserDb(mongoApp);
+  if (result.success && result.data) {
+    debugLog(
+      app.environment.debug,
+      'log',
+      getSuiteCoreTranslation(
+        SuiteCoreStringKey.Admin_UserDatabaseInitialized,
+      ),
+    );
+    if (app.environment.detailedDebug) {
+      DatabaseInitializationService.printServerInitResults(result.data);
+      
+      // Handle --setEnv flag to write credentials to .env file
+      if (process.argv.includes('--setEnv')) {
+        const apiEnvPath = join(
+          BaseApplication.distDir,
+          '..', // Go up from dist
+          'express-suite-example-api',
+          '.env',
+        );
+        DatabaseInitializationService.writeEnvFile(apiEnvPath, result.data);
+      }
+      
+      const initHash = DatabaseInitializationService.serverInitResultHash(
+        result.data,
+      );
+      debugLog(
+        true,
+        'log',
+        `Database initialized with options hash: ${initHash}`,
+      );
+    }
+    exitCode = 0;
+  } else {
+    const engine = getSuiteCoreI18nEngine();
+    console.error(
+      engine.t(
+        ':',
+      ),
+      result.error,
+    );
+    exitCode++;
+  }
+  await mongoPlugin.disconnect();
+  process.exit(exitCode);
+}
+
+main().catch((err) => {
+  const engine = getSuiteCoreI18nEngine();
+  console.error(
+    engine.t(':'),
+    err,
+  );
+  process.exit(1);
+});
