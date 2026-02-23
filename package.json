@@ -93,7 +93,7 @@
   "dependencies": {
     "@aws-sdk/client-ses": "^3.995.0",
     "@digitaldefiance/ecies-lib": "^4.19.5",
-    "@digitaldefiance/express-suite-react-components": "^2.14.11",
+    "@digitaldefiance/express-suite-react-components": "^2.14.12",
     "@digitaldefiance/i18n-lib": "^4.6.4",
     "@digitaldefiance/mongoose-types": "^8.20.9",
     "@digitaldefiance/node-ecies-lib": "^4.19.5",

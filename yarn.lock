@@ -2099,7 +2099,7 @@ __metadata:
     "@babel/core": "npm:^7.14.5"
     "@babel/preset-react": "npm:^7.14.5"
     "@digitaldefiance/ecies-lib": "npm:^4.19.5"
-    "@digitaldefiance/express-suite-react-components": "npm:^2.14.11"
+    "@digitaldefiance/express-suite-react-components": "npm:^2.14.12"
     "@digitaldefiance/express-suite-test-utils": "npm:^1.1.1"
     "@digitaldefiance/i18n-lib": "npm:^4.6.4"
     "@digitaldefiance/mongoose-types": "npm:^8.20.9"
@@ -2237,12 +2237,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@digitaldefiance/express-suite-react-components@npm:^2.14.11":
-  version: 2.14.11
-  resolution: "@digitaldefiance/express-suite-react-components@npm:2.14.11"
+"@digitaldefiance/express-suite-react-components@npm:^2.14.12":
+  version: 2.14.12
+  resolution: "@digitaldefiance/express-suite-react-components@npm:2.14.12"
   dependencies:
     "@digitaldefiance/i18n-lib": "npm:4.6.4"
-    "@digitaldefiance/suite-core-lib": "npm:3.13.5"
+    "@digitaldefiance/suite-core-lib": "npm:3.13.6"
     "@emotion/react": "npm:^11.14.0"
     "@emotion/styled": "npm:^11.14.0"
     "@mui/icons-material": "npm:^7.0.2"
@@ -2257,7 +2257,7 @@ __metadata:
     yup: "npm:^1.6.1"
   peerDependencies:
     react-router-dom: 6.29.0
-  checksum: 10c0/f6b6f29e41c274ffa1e3fc72e4aee3ffc2144ba45691f98c3db15edcf364ca1c3bc2d53c0324b2c422d8f09bc4be71b9516ef36351d7582c956b31b14e8239d7
+  checksum: 10c0/49ae1b0bd2afd707d358274d1acb2e2b71424987cfb29e0456b5fddae5630463d738c0059499695499f9f373cde03a086a7a1648f809096fe3d80da6287bfc79
   languageName: node
   linkType: hard
 
@@ -2402,7 +2402,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@digitaldefiance/suite-core-lib@npm:^3.13.6":
+"@digitaldefiance/suite-core-lib@npm:3.13.6, @digitaldefiance/suite-core-lib@npm:^3.13.6":
   version: 3.13.6
   resolution: "@digitaldefiance/suite-core-lib@npm:3.13.6"
   dependencies:
