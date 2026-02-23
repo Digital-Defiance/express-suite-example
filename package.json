@@ -117,7 +117,7 @@
     "mongoose": "^9.2.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "react-router-dom": "^7.13.0"
+    "react-router-dom": "^7.13.1"
   },
   "scripts": {
     "build": "NODE_ENV=production npx nx run-many --target=build --all --configuration=production",
