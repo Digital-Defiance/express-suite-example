@@ -2047,7 +2047,7 @@ __metadata:
     "@digitaldefiance/i18n-lib": "npm:^4.6.4"
     "@digitaldefiance/mongoose-types": "npm:^8.20.9"
     "@digitaldefiance/node-ecies-lib": "npm:^4.23.0"
-    "@digitaldefiance/node-express-suite": "npm:^4.23.3"
+    "@digitaldefiance/node-express-suite": "npm:^4.23.4"
     "@digitaldefiance/node-express-suite-mongo": "npm:^4.23.3"
     "@digitaldefiance/suite-core-lib": "npm:^4.22.2"
     "@emotion/react": "npm:^11.14.0"
@@ -2292,9 +2292,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@digitaldefiance/node-express-suite@npm:^4.23.3":
-  version: 4.23.3
-  resolution: "@digitaldefiance/node-express-suite@npm:4.23.3"
+"@digitaldefiance/node-express-suite@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@digitaldefiance/node-express-suite@npm:4.23.4"
   dependencies:
     "@digitaldefiance/branded-interface": "npm:^0.0.5"
     "@digitaldefiance/ecies-lib": "npm:4.20.2"
@@ -2316,7 +2316,7 @@ __metadata:
     nat-upnp: "npm:^1.1.1"
     reflect-metadata: "npm:^0.2.2"
     zod: "npm:^3.24.0"
-  checksum: 10c0/c2bccf2282109f05a68a099aa67c1eb496ccab542029ce0c357ae66735efeec487efca74acc842d4592f1f04fb1235ddadfcc72b0b6fd78c6b80e980bb030b92
+  checksum: 10c0/30fafe0146abf97c78f662a735f9b66423feec1aa2b9cad26806bc1afdc1bc43211ae2445173ea1d2809d0dc215d12ffe5bfadc916d71fb6525447b373b460b8
   languageName: node
   linkType: hard
 
