@@ -1,0 +1,9 @@
+{
+  "name": "express-suite-example-api-lib",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "express-suite-example-api-lib/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project express-suite-example-api-lib --web",
+  "targets": {}
+}
