@@ -1,0 +1,127 @@
+{
+  "name": "express-suite-example-inituserdb",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "express-suite-example-inituserdb/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/express-suite-example-inituserdb",
+        "format": [
+          "esm"
+        ],
+        "bundle": true,
+        "main": "express-suite-example-inituserdb/src/main.ts",
+        "tsConfig": "express-suite-example-inituserdb/tsconfig.app.json",
+        "assets": [
+          "express-suite-example-inituserdb/src/assets"
+        ],
+        "generatePackageJson": false,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          },
+          "external": [
+            "@digitaldefiance/*"
+          ]
+        },
+        "skipTypeCheck": true,
+        "thirdParty": false
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "esbuildOptions": {
+            "sourcemap": false,
+            "outExtension": {
+              ".js": ".js"
+            },
+            "external": [
+              "@digitaldefiance/*"
+            ]
+          }
+        }
+      }
+    },
+    "prune-lockfile": {
+      "dependsOn": [
+        "build"
+      ],
+      "cache": true,
+      "executor": "@nx/js:prune-lockfile",
+      "outputs": [
+        "{workspaceRoot}/dist/express-suite-example-inituserdb/package.json",
+        "{workspaceRoot}/dist/express-suite-example-inituserdb/yarn.lock"
+      ],
+      "options": {
+        "buildTarget": "build"
+      }
+    },
+    "copy-workspace-modules": {
+      "dependsOn": [
+        "build"
+      ],
+      "cache": true,
+      "outputs": [
+        "{workspaceRoot}/dist/express-suite-example-inituserdb/workspace_modules"
+      ],
+      "executor": "@nx/js:copy-workspace-modules",
+      "options": {
+        "buildTarget": "build"
+      }
+    },
+    "prune": {
+      "dependsOn": [
+        "prune-lockfile",
+        "copy-workspace-modules"
+      ],
+      "executor": "nx:noop"
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "defaultConfiguration": "development",
+      "dependsOn": [
+        "post-build"
+      ],
+      "options": {
+        "command": "node dist/express-suite-example-inituserdb/main.js",
+        "cwd": "{workspaceRoot}"
+      },
+      "configurations": {
+        "development": {
+          "command": "node dist/express-suite-example-inituserdb/main.js"
+        },
+        "production": {
+          "command": "node dist/express-suite-example-inituserdb/main.js"
+        }
+      }
+    },
+    "test": {
+      "options": {
+        "passWithNoTests": true
+      }
+    },
+    "copy-env": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cp express-suite-example-inituserdb/.env dist/express-suite-example-inituserdb/.env"
+      }
+    },
+    "post-build": {
+      "executor": "nx:run-commands",
+      "dependsOn": [
+        "build"
+      ],
+      "options": {
+        "command": "cp express-suite-example-inituserdb/.env dist/express-suite-example-inituserdb/.env"
+      }
+    }
+  }
+}
