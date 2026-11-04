@@ -20,8 +20,9 @@ describe('App', () => {
       </BrowserRouter>,
     );
     expect(
-      getAllByText(new RegExp('Welcome express-suite-example-react', 'gi'))
-        .length > 0,
+      getAllByText(
+        new RegExp('Welcome to digitaldefiance-express-suite-example', 'gi'),
+      ).length > 0,
     ).toBeTruthy();
   });
 });
