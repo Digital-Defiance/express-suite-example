@@ -12,54 +12,54 @@ import {
 import helmet from 'helmet';
 import { IncomingMessage, ServerResponse } from 'http';
 
-  /**
-   * CORS whitelist
-   */
-  const corsWhitelist = [
-    /^https?:\/\/localhost:(3000|3443|4200)$/,
-    new RegExp(
-      `^https?:\\/\\/${AppConstants.SiteHostname.replace(
-        /[.*+?^${}()|[\]\\]/g,
-        '\\$&'
-      )}$`
-    ),
-  ];
+/**
+ * CORS whitelist
+ */
+const corsWhitelist = [
+  /^https?:\/\/localhost:(3000|3443|4200)$/,
+  new RegExp(
+    `^https?:\\/\\/${AppConstants.SiteHostname.replace(
+      /[.*+?^${}()|[\]\\]/g,
+      '\\$&',
+    )}$`,
+  ),
+];
 
-  /**
-   * CORS options delegate
-   * @param req - CORS request
-   * @param callback - Callback function
-   */
-  const corsOptionsDelegate = (
-    req: cors.CorsRequest,
-    callback: (
-      error: Error | null,
-      options: cors.CorsOptions | undefined,
-    ) => void,
-  ) => {
-    let corsOptions: cors.CorsOptions;
-    const origin = req.headers.origin;
-    if (
-      origin &&
-      corsWhitelist.find((w) => {
-        if (w instanceof RegExp) {
-          return w.test(origin);
-        } else {
-          return w === origin;
-        }
-      })
-    ) {
-      corsOptions = { origin: true };
-    } else {
-      corsOptions = { origin: false };
-    }
-    callback(null, corsOptions);
-  };
+/**
+ * CORS options delegate
+ * @param req - CORS request
+ * @param callback - Callback function
+ */
+const corsOptionsDelegate = (
+  req: cors.CorsRequest,
+  callback: (
+    error: Error | null,
+    options: cors.CorsOptions | undefined,
+  ) => void,
+) => {
+  let corsOptions: cors.CorsOptions;
+  const origin = req.headers.origin;
+  if (
+    origin &&
+    corsWhitelist.find((w) => {
+      if (w instanceof RegExp) {
+        return w.test(origin);
+      } else {
+        return w === origin;
+      }
+    })
+  ) {
+    corsOptions = { origin: true };
+  } else {
+    corsOptions = { origin: false };
+  }
+  callback(null, corsOptions);
+};
 
-  /**
-   * Initialize the middleware
-   * @param app - Express application
-   */
+/**
+ * Initialize the middleware
+ * @param app - Express application
+ */
 export const initMiddleware = (app: Application): void => {
   // Helmet helps you secure your Express apps by setting various HTTP headers
   // CSP nonce
@@ -95,10 +95,7 @@ export const initMiddleware = (app: Application): void => {
             "'unsafe-inline'",
             'https://fonts.googleapis.com',
           ],
-          fontSrc: [
-            "'self'",
-            'https://fonts.gstatic.com',
-          ],
+          fontSrc: ["'self'", 'https://fonts.gstatic.com'],
           frameSrc: ["'self'"],
         },
       },
@@ -110,4 +107,4 @@ export const initMiddleware = (app: Application): void => {
   app.use(json());
   // Parse incoming requests with urlencoded payloads
   app.use(urlencoded({ extended: true }));
-}
+};

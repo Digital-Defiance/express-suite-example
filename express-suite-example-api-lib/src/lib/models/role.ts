@@ -1,4 +1,9 @@
-import { BaseModelName, SchemaCollection, RoleDocument, RoleSchema } from '@digitaldefiance/node-express-suite-mongo';
+import {
+  BaseModelName,
+  SchemaCollection,
+  RoleDocument,
+  RoleSchema,
+} from '@digitaldefiance/node-express-suite-mongo';
 import { Connection } from '@digitaldefiance/mongoose-types';
 
 export function RoleModel(connection: Connection) {

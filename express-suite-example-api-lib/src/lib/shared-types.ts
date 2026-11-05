@@ -1,21 +1,45 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { ValidationChain } from 'express-validator';
-import { ClientSession, Document, Model, Types } from '@digitaldefiance/mongoose-types';
+import {
+  ClientSession,
+  Document,
+  Model,
+  Types,
+} from '@digitaldefiance/mongoose-types';
 import { Brand } from 'ts-brand';
 import type { IUserDocument } from './documents/user';
 import { CoreLanguageCode } from '@digitaldefiance/i18n-lib';
-import { IKeyPairBufferWithUnEncryptedPrivateKey, ISigningKeyPrivateKeyInfo, ISimplePublicKeyOnly, ISimpleKeyPairBuffer, ISimplePublicKeyOnlyBuffer } from '@digitaldefiance/node-ecies-lib'
-import { IApiErrorResponse, IApiMessageResponse, IStatusCodeResponse, IApiExpressValidationErrorResponse } from '@digitaldefiance/node-express-suite';
-import { ISchema, IApiMongoValidationErrorResponse, UserRoleDocument, UsedDirectLoginTokenDocument, RoleDocument, MnemonicDocument, EmailTokenDocument } from '@digitaldefiance/node-express-suite-mongo';
+import {
+  IKeyPairBufferWithUnEncryptedPrivateKey,
+  ISigningKeyPrivateKeyInfo,
+  ISimplePublicKeyOnly,
+  ISimpleKeyPairBuffer,
+  ISimplePublicKeyOnlyBuffer,
+} from '@digitaldefiance/node-ecies-lib';
+import {
+  IApiErrorResponse,
+  IApiMessageResponse,
+  IStatusCodeResponse,
+  IApiExpressValidationErrorResponse,
+} from '@digitaldefiance/node-express-suite';
+import {
+  ISchema,
+  IApiMongoValidationErrorResponse,
+  UserRoleDocument,
+  UsedDirectLoginTokenDocument,
+  RoleDocument,
+  MnemonicDocument,
+  EmailTokenDocument,
+} from '@digitaldefiance/node-express-suite-mongo';
 
 export type DefaultBackendIdType = Types.ObjectId;
 
 export type MongooseDocument = Document;
 export type MongooseModel<
   TRawDocType,
-  TQueryHelpers = {},
-  TInstanceMethods = {},
-  TVirtuals = {},
+  TQueryHelpers = Record<string, never>,
+  TInstanceMethods = Record<string, never>,
+  TVirtuals = Record<string, never>,
 > = Model<TRawDocType, TQueryHelpers, TInstanceMethods, TVirtuals>;
 
 /**

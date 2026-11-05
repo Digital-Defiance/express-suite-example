@@ -2,7 +2,11 @@ import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 import { IApplication } from '@digitaldefiance/node-express-suite';
 
 // Simple debugLog implementation
-function debugLog(debug: boolean, type: 'log' | 'warn' | 'error', ...args: any[]): void {
+function debugLog(
+  debug: boolean,
+  type: 'log' | 'warn' | 'error',
+  ...args: any[]
+): void {
   if (debug) {
     console[type](...args);
   }
@@ -36,8 +40,7 @@ export class EmailService<TID extends PlatformID> {
       region: environment.aws.region,
       credentials: {
         accessKeyId: environment.aws.accessKeyId.value ?? '',
-        secretAccessKey:
-          environment.aws.secretAccessKey.value ?? '',
+        secretAccessKey: environment.aws.secretAccessKey.value ?? '',
       },
     });
   }

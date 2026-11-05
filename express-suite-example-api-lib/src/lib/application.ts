@@ -16,7 +16,6 @@ import { Constants } from './constants';
 import { AppRouter } from './routers/app';
 import { getSchemaMap } from './schemas/schema';
 import { initMiddleware } from './middlewares';
-import { EmailService } from './services/email';
 import { Types } from '@digitaldefiance/mongoose-types';
 import { ModelDocMap } from './shared-types';
 

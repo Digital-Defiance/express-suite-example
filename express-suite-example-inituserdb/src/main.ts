@@ -10,7 +10,11 @@ import {
 } from '@digitaldefiance/node-express-suite-mongo';
 
 // Simple debugLog implementation
-function debugLog(debug: boolean, type: 'log' | 'warn' | 'error', ...args: any[]): void {
+function debugLog(
+  debug: boolean,
+  type: 'log' | 'warn' | 'error',
+  ...args: any[]
+): void {
   if (debug) {
     console[type](...args);
   }
@@ -19,15 +23,21 @@ import { Constants as AppConstants } from '@express-suite-example/api-lib';
 import { GlobalActiveContext, IActiveContext } from '@digitaldefiance/i18n-lib';
 import { IECIESConfig } from '@digitaldefiance/ecies-lib';
 import { ECIESService } from '@digitaldefiance/node-ecies-lib';
+import { CoreLanguageCode } from '@digitaldefiance/i18n-lib';
 import {
-  CoreLanguageCode,
-} from '@digitaldefiance/i18n-lib';
-import { getSuiteCoreI18nEngine, getSuiteCoreTranslation, IFailableResult, SuiteCoreStringKey } from '@digitaldefiance/suite-core-lib';
+  getSuiteCoreI18nEngine,
+  getSuiteCoreTranslation,
+  IFailableResult,
+  SuiteCoreStringKey,
+} from '@digitaldefiance/suite-core-lib';
 import { randomBytes } from 'crypto';
 import { join } from 'path';
 
 async function main() {
-  const context = GlobalActiveContext.getInstance<CoreLanguageCode, IActiveContext<CoreLanguageCode>>();
+  const context = GlobalActiveContext.getInstance<
+    CoreLanguageCode,
+    IActiveContext<CoreLanguageCode>
+  >();
   context.languageContextSpace = 'admin';
 
   const config: IECIESConfig = {
@@ -44,9 +54,7 @@ async function main() {
     process.env.ADMIN_MNEMONIC = mnemonic.value;
     console.log(
       `ADMIN_MNEMONIC="${mnemonic.value}"\n`,
-      getSuiteCoreTranslation(
-        SuiteCoreStringKey.Admin_MakeSureToSetItInEnv,
-      ),
+      getSuiteCoreTranslation(SuiteCoreStringKey.Admin_MakeSureToSetItInEnv),
     );
   }
   if (process.argv.includes('--gen-member-user-mnemonic')) {
@@ -54,9 +62,7 @@ async function main() {
     process.env.MEMBER_MNEMONIC = mnemonic.value;
     console.log(
       `MEMBER_MNEMONIC="${mnemonic.value}"\n`,
-      getSuiteCoreTranslation(
-        SuiteCoreStringKey.Admin_MakeSureToSetItInEnv,
-      ),
+      getSuiteCoreTranslation(SuiteCoreStringKey.Admin_MakeSureToSetItInEnv),
     );
   }
   if (process.argv.includes('--gen-mnemonic-hmac-secret')) {
@@ -64,9 +70,7 @@ async function main() {
     process.env.MNEMONIC_HMAC_SECRET = mnemonicHmacSecret;
     console.log(
       `MNEMONIC_HMAC_SECRET="${mnemonicHmacSecret}"\n`,
-      getSuiteCoreTranslation(
-        SuiteCoreStringKey.Admin_MakeSureToSetItInEnv,
-      ),
+      getSuiteCoreTranslation(SuiteCoreStringKey.Admin_MakeSureToSetItInEnv),
     );
   }
   if (process.argv.includes('--gen-mnemonic-encryption-key')) {
@@ -74,16 +78,11 @@ async function main() {
     process.env.MNEMONIC_ENCRYPTION_KEY = mnemonicEncryptionKey;
     console.log(
       `MNEMONIC_ENCRYPTION_KEY="${mnemonicEncryptionKey}"\n`,
-      getSuiteCoreTranslation(
-        SuiteCoreStringKey.Admin_MakeSureToSetItInEnv,
-      ),
+      getSuiteCoreTranslation(SuiteCoreStringKey.Admin_MakeSureToSetItInEnv),
     );
   }
 
-  const envDir = join(
-    __dirname,
-    '.env',
-  );
+  const envDir = join(__dirname, '.env');
   const env: Environment = new Environment(envDir, true);
 
   // Create MongoDatabasePlugin for database lifecycle management
@@ -97,14 +96,30 @@ async function main() {
 
   // Create a no-op IDatabase since MongoDatabasePlugin manages its own connection
   const noOpDb = {
-    collection() { throw new Error('Use MongoDatabasePlugin'); },
-    startSession() { throw new Error('Use MongoDatabasePlugin'); },
-    withTransaction() { throw new Error('Use MongoDatabasePlugin'); },
-    listCollections() { return []; },
-    async dropCollection() { return false; },
-    async connect() { /* no-op */ },
-    async disconnect() { /* no-op */ },
-    isConnected() { return false; },
+    collection() {
+      throw new Error('Use MongoDatabasePlugin');
+    },
+    startSession() {
+      throw new Error('Use MongoDatabasePlugin');
+    },
+    withTransaction() {
+      throw new Error('Use MongoDatabasePlugin');
+    },
+    listCollections() {
+      return [];
+    },
+    async dropCollection() {
+      return false;
+    },
+    async connect() {
+      /* no-op */
+    },
+    async disconnect() {
+      /* no-op */
+    },
+    isConnected() {
+      return false;
+    },
   };
 
   const app = new BaseApplication(env, noOpDb as never, AppConstants);
@@ -113,13 +128,16 @@ async function main() {
   debugLog(
     app.environment.detailedDebug,
     'log',
-    getSuiteCoreTranslation(SuiteCoreStringKey.Admin_TransactionsEnabledDisabledTemplate, {
-      STATE: getSuiteCoreTranslation(
-        app.environment.mongo.useTransactions
-          ? SuiteCoreStringKey.Common_Enabled
-          : SuiteCoreStringKey.Common_Disabled,
-      ),
-    }),
+    getSuiteCoreTranslation(
+      SuiteCoreStringKey.Admin_TransactionsEnabledDisabledTemplate,
+      {
+        STATE: getSuiteCoreTranslation(
+          app.environment.mongo.useTransactions
+            ? SuiteCoreStringKey.Common_Enabled
+            : SuiteCoreStringKey.Common_Disabled,
+        ),
+      },
+    ),
   );
   let exitCode = 1;
 
@@ -142,13 +160,17 @@ async function main() {
       debugLog(
         app.environment.detailedDebug,
         'log',
-        getSuiteCoreTranslation(SuiteCoreStringKey.Admin_ProceedingToDbInitialization),
+        getSuiteCoreTranslation(
+          SuiteCoreStringKey.Admin_ProceedingToDbInitialization,
+        ),
       );
     } else {
       debugLog(
         app.environment.detailedDebug,
         'error',
-        getSuiteCoreTranslation(SuiteCoreStringKey.Admin_Error_FailedToDropDatabase),
+        getSuiteCoreTranslation(
+          SuiteCoreStringKey.Admin_Error_FailedToDropDatabase,
+        ),
       );
       await mongoPlugin.disconnect();
       process.exit(2);
@@ -161,7 +183,9 @@ async function main() {
   );
   const mongoApp = mongoPlugin.mongoApplication;
   if (!mongoApp) {
-    console.error('MongoPlugin was not initialized — mongoApplication is undefined');
+    console.error(
+      'MongoPlugin was not initialized — mongoApplication is undefined',
+    );
     await mongoPlugin.disconnect();
     process.exit(2);
   }
@@ -171,13 +195,11 @@ async function main() {
     debugLog(
       app.environment.debug,
       'log',
-      getSuiteCoreTranslation(
-        SuiteCoreStringKey.Admin_UserDatabaseInitialized,
-      ),
+      getSuiteCoreTranslation(SuiteCoreStringKey.Admin_UserDatabaseInitialized),
     );
     if (app.environment.detailedDebug) {
       DatabaseInitializationService.printServerInitResults(result.data);
-      
+
       // Handle --setEnv flag to write credentials to .env file
       if (process.argv.includes('--setEnv')) {
         const apiEnvPath = join(
@@ -188,7 +210,7 @@ async function main() {
         );
         DatabaseInitializationService.writeEnvFile(apiEnvPath, result.data);
       }
-      
+
       const initHash = DatabaseInitializationService.serverInitResultHash(
         result.data,
       );
@@ -201,12 +223,7 @@ async function main() {
     exitCode = 0;
   } else {
     const engine = getSuiteCoreI18nEngine();
-    console.error(
-      engine.t(
-        ':',
-      ),
-      result.error,
-    );
+    console.error(engine.t(':'), result.error);
     exitCode++;
   }
   await mongoPlugin.disconnect();
@@ -215,9 +232,6 @@ async function main() {
 
 main().catch((err) => {
   const engine = getSuiteCoreI18nEngine();
-  console.error(
-    engine.t(':'),
-    err,
-  );
+  console.error(engine.t(':'), err);
   process.exit(1);
 });

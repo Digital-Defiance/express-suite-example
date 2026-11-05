@@ -20,7 +20,10 @@ module.exports = {
       babelrc: false,
       configFile: false,
       presets: [
-        ['@babel/preset-env', { targets: { node: 'current' }, modules: 'commonjs' }],
+        [
+          '@babel/preset-env',
+          { targets: { node: 'current' }, modules: 'commonjs' },
+        ],
       ],
       sourceMaps: 'inline',
     });

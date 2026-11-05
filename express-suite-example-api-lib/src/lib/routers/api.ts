@@ -13,22 +13,19 @@ import {
   Paginated,
   IApplication,
 } from '@digitaldefiance/node-express-suite';
-import { ITokenRole, ITokenUser, IUserBase } from '@digitaldefiance/suite-core-lib';
 import { Types } from '@digitaldefiance/mongoose-types';
-import { Environment } from '../environment';
-import { IConstants } from '../interfaces/constants';
 import { CoreLanguageCode } from '@digitaldefiance/i18n-lib';
 
 /**
  * CustomApiController - Example decorator-based API controller.
- * 
+ *
  * This controller demonstrates the recommended decorator-based approach for
  * building custom Express API endpoints with @digitaldefiance/node-express-suite.
- * 
+ *
  * Note: The main user authentication routes (/api/user/*) are provided by the
  * library's ApiRouter which is configured in application.ts. This controller
  * is for adding your own custom API endpoints.
- * 
+ *
  * Features demonstrated:
  * - @ApiController for controller registration and OpenAPI metadata
  * - @Get, @Post, @Put, @Delete for HTTP method routing
@@ -37,14 +34,14 @@ import { CoreLanguageCode } from '@digitaldefiance/i18n-lib';
  * - @Returns for response documentation
  * - @Param, @Query for parameter injection
  * - @Paginated for pagination support
- * 
+ *
  * To use this controller, mount it on your application's router in application.ts:
  * ```typescript
  * // In your Application class constructor, after creating the LibraryApiRouter:
  * const customController = new CustomApiController(app);
  * apiRouter.router.use('/custom', customController.router);
  * ```
- * 
+ *
  * @example
  * ```typescript
  * // Create your own controller by extending DecoratorBaseController
@@ -54,7 +51,7 @@ import { CoreLanguageCode } from '@digitaldefiance/i18n-lib';
  *   constructor(app: IApplication) {
  *     super(app);
  *   }
- * 
+ *
  *   @Public()
  *   @ApiSummary('Get user by ID')
  *   @Returns(200, 'User', { description: 'User found' })
@@ -73,14 +70,7 @@ import { CoreLanguageCode } from '@digitaldefiance/i18n-lib';
 @RequireAuth()
 export class CustomApiController<
   TID extends Types.ObjectId | string = Types.ObjectId,
-  TDate extends Date = Date,
   TLanguage extends CoreLanguageCode = CoreLanguageCode,
-  TAccountStatus extends string = string,
-  TUser extends IUserBase<TID, TDate, TLanguage, TAccountStatus> = IUserBase<TID, TDate, TLanguage, TAccountStatus>,
-  TTokenRole extends ITokenRole<TID, TDate> = ITokenRole<TID, TDate>,
-  TTokenUser extends ITokenUser = ITokenUser,
-  TEnvironment extends Environment<TID> = Environment<TID>,
-  TConstants extends IConstants = IConstants,
   TApplication extends IApplication<TID> = IApplication<TID>,
 > extends DecoratorBaseController<TLanguage, TID> {
   constructor(app: TApplication) {

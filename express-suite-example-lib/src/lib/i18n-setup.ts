@@ -1,7 +1,4 @@
-import {
-  createI18nSetup,
-  LanguageCodes,
-} from '@digitaldefiance/i18n-lib';
+import { createI18nSetup, LanguageCodes } from '@digitaldefiance/i18n-lib';
 import { createSuiteCoreComponentPackage } from '@digitaldefiance/suite-core-lib';
 import { AppConstants } from './constants';
 import { DigitaldefianceExpressSuiteExampleStringKey } from './enumerations/digitaldefiance-express-suite-example-string-key';

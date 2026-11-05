@@ -1,4 +1,8 @@
-import { GlobalActiveContext, IActiveContext, CoreLanguageCode } from '@digitaldefiance/i18n-lib';
+import {
+  GlobalActiveContext,
+  IActiveContext,
+  CoreLanguageCode,
+} from '@digitaldefiance/i18n-lib';
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router';
@@ -8,7 +12,10 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 
-const context = GlobalActiveContext.getInstance<CoreLanguageCode, IActiveContext<CoreLanguageCode>>();
+const context = GlobalActiveContext.getInstance<
+  CoreLanguageCode,
+  IActiveContext<CoreLanguageCode>
+>();
 context.languageContextSpace = 'user';
 
 root.render(

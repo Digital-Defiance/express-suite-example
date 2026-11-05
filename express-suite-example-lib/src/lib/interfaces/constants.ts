@@ -6,7 +6,9 @@ import type { ISuiteCoreI18nConstants } from '@digitaldefiance/suite-core-lib';
  * Extends ISuiteCoreConstants for general app config and
  * ISuiteCoreI18nConstants for type-safe i18n template variables.
  */
-export interface IConstants extends ISuiteCoreConstants, ISuiteCoreI18nConstants {
+export interface IConstants
+  extends ISuiteCoreConstants,
+    ISuiteCoreI18nConstants {
   readonly Site: string;
   readonly SiteTagline: string;
   readonly SiteDescription: string;

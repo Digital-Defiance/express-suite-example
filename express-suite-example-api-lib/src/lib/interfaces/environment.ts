@@ -2,7 +2,8 @@ import { IEnvironment as IBaseEnvironment } from '@digitaldefiance/node-express-
 import { IEnvironmentAws } from './environment-aws';
 import { PlatformID } from '@digitaldefiance/node-ecies-lib';
 
-export interface IEnvironment<TID extends PlatformID> extends IBaseEnvironment<TID> {
+export interface IEnvironment<TID extends PlatformID>
+  extends IBaseEnvironment<TID> {
   /**
    * AWS configuration
    */

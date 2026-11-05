@@ -1,4 +1,9 @@
-import { BaseModelName, SchemaCollection, EmailTokenDocument, EmailTokenSchema } from '@digitaldefiance/node-express-suite-mongo';
+import {
+  BaseModelName,
+  SchemaCollection,
+  EmailTokenDocument,
+  EmailTokenSchema,
+} from '@digitaldefiance/node-express-suite-mongo';
 import { Connection } from '@digitaldefiance/mongoose-types';
 
 export function EmailTokenModel(connection: Connection) {
