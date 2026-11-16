@@ -2267,9 +2267,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@digitaldefiance/i18n-lib@npm:4.7.4":
-  version: 4.7.4
-  resolution: "@digitaldefiance/i18n-lib@npm:4.7.4"
+"@digitaldefiance/i18n-lib@npm:4.8.0":
+  version: 4.8.0
+  resolution: "@digitaldefiance/i18n-lib@npm:4.8.0"
   dependencies:
     "@digitaldefiance/branded-enum": "npm:0.0.7"
     currency-codes: "npm:^2.2.0"
@@ -2279,7 +2279,7 @@ __metadata:
     tslib: "npm:^2.3.0"
   peerDependencies:
     "@digitaldefiance/branded-interface": ^0.0.5
-  checksum: 10c0/8e3f61459d20802a23b17d6e3eb4090f2803c2759d23331cd2976d822af019cefb7e6a27549351792644e49034e8752e33825921fc1719af0b3c0c0a48e3f1c2
+  checksum: 10c0/1e1169a3ab32ecea2d5e243ffa03cc733906642efb7435a9b81dc1a063bf32a131df413fa062bd72304953bbf4d9da4f2c1fe60476af50ca1782b5d3bb775ec4
   languageName: node
   linkType: hard
 
